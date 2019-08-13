@@ -7,16 +7,22 @@
   </head>
   <body>
     <div id="createNote">
-      <input type="text" id="titleNote" placeholder="Titre..."><br/>
+      <input v-model="titre" type="text" id="titleNote" placeholder="Titre..."><br/>
       <textarea v-model="message" v-on:keyup="change" id="containedNote" placeholder="Note..." v-bind:rows="rows"></textarea><br/>
-      <input type="button" id="sendNote" value="Noter">
+      <input type="button" v-on:click="clickSendNote"  id="sendNote" value="Noter">
     </div>
-
-    <div id="app">
-      {{ message }}
+    <div id="infoAfterSend" v-bind:style="styleObject">
+      <transition name="fade">
+        <h4 v-if="seen">{{ infoAfterSendMsg }}</h4>
+      </transition>
     </div>
-
-
+    <div id="listNote">
+      <div class="note" v-for="note in listNotes">
+        <h3>{{ note.titre }}</h3>
+        <p>{{ note.note }}</p>
+      </div>
+    </div>
+    
     <script src="vue.js"></script>
     <script src="script.js"></script>
   </body>

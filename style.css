@@ -1,6 +1,6 @@
 body{
   background: #202124;
-  color: white;
+  color: #d1d1d9;
   font-family: 'Arial';
 }
 #createNote{
@@ -10,6 +10,7 @@ body{
   border-radius: 5px;
   width: 500px;
   padding: 8px;
+  margin-bottom: 20px;
 }
 textarea{
   resize: none;
@@ -35,6 +36,13 @@ input[type=text]{
   margin-left: 8px;
   color: #d1d1d9;
 }
+input[id="titleNote"]{
+  transition-property: border-bottom;
+  transition-duration: 2s;
+}
+input[id="titleNote"]:hover{
+  border-bottom: 1px solid #d1d1d9;
+}
 input[type=button]{
   border: 2px solid #2d2e30;
   background-color: #2d2e30;
@@ -52,4 +60,53 @@ input[type=button]:hover{
 }
 input:placeholder-shown{
   color: #93969c;  
+}
+#infoAfterSend{
+  position: absolute;
+  top: -600px;;
+  left: 35%;
+  background-color: rgba(45,46,48,0.2);
+  border: 1px solid #5f6368;
+  padding: 10px;
+  border-radius: 10px;
+}
+#infoAfterSend h3{
+  margin: 0px;
+}
+
+
+#listNote{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 500px;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  padding-right: 30px;
+  
+}
+.note {
+  border: 1px solid #5f6368;
+  background-color: #2d2e30;
+  max-width: 320px;
+  min-width: 150px;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 15px;
+  margin: 12px;
+  
+
+}
+.note {
+  white-space: pre-line
+}
+h3{
+  margin-top: 2px;
+  
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .6s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
