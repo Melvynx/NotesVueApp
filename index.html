@@ -17,9 +17,10 @@
       </transition>
     </div>
     <div id="listNote">
-      <div class="note" v-for="note in listNotes">
+      <div class="note" :data-id=note.id @mouseover="overDone" @mouseleave="overFalse" v-for="note in listNotes">
         <h1>{{ note.titre }}</h3>
         <p>{{ note.note }}</p>
+        <button class="buttonDelete hideButton"><img src="image/index.png"></button>
       </div>
     </div>
     
