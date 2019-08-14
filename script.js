@@ -1,9 +1,27 @@
 //utile
-msgSendNote = function() {
+const msgSendNote = function() {
   infoAfterSend.styleObject.top = "10%"
   infoAfterSend.seen = true;
   setTimeout(function () { infoAfterSend.styleObject.top = '-600px' }, 2000);
   setTimeout(function () { infoAfterSend.seen = false; }, 2000);
+}
+const checkedTitle = function(title) {
+  if (title.length > 3 && title.length < 30) {
+    return true;
+  } else {
+    infoAfterSend.infoAfterSendMsg = "Merci de donner un titre de plus de 3 caractères et un maximume de 30.";
+    msgSendNote();
+    return false;
+  }
+}
+const checkedNote = function(note) {
+  if (note.length > 3 && note.length < 30) {
+    return true;
+  } else {
+    infoAfterSend.infoAfterSendMsg = "Merci d'effectuer une note de plus de 5 caractères. 2000 est la limites.";
+    msgSendNote();
+    return false;
+  }
 }
 //variable
 let infoAfterSendMsg;
@@ -31,23 +49,13 @@ const createNote = new Vue({
       }
     },
     clickSendNote: function () {
-      if (this.titre.length > 3 && this.titre.length < 30) {
-        if (this.message.length > 5 && this.message.length < 2000) {
-          listNote.listNotes.push({ titre : this.titre, note : this.message});
-          console.log("it's pushed");
-          this.message = "";
-          this.titre = "";
-          msgSendNote();
-          infoAfterSend.infoAfterSendMsg = "La note à été sauvegarder.";
-        }
-        else {
-          infoAfterSend.infoAfterSendMsg = "Merci d'effectuer une note de plus de 5 caractères. 2000 est la limites.";
-          msgSendNote();
-        }
-      }
-      else {
-        infoAfterSend.infoAfterSendMsg = "Merci de donner un titre de plus de 3 caractères et un maximume de 30.";
+      if (checkedTitle(this.titre) && checkedNote(this.message)) {
+        listNote.listNotes.push({ titre : this.titre, note : this.message});
+        console.log("it's pushed");
+        this.message = "";
+        this.titre = "";
         msgSendNote();
+        infoAfterSend.infoAfterSendMsg = "La note à été sauvegarder.";
       }
     }
   }

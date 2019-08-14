@@ -39,6 +39,7 @@ input[type=text]{
 input[id="titleNote"]{
   transition-property: border-bottom;
   transition-duration: 2s;
+  display: block;
 }
 input[id="titleNote"]:hover{
   border-bottom: 1px solid #d1d1d9;
@@ -69,10 +70,13 @@ input:placeholder-shown{
   border: 1px solid #5f6368;
   padding: 10px;
   border-radius: 10px;
+  max-width: 300px;
 }
-#infoAfterSend h3{
+#infoAfterSend h2{
   margin: 0px;
+  font-size: 18px;
 }
+
 
 
 #listNote{
@@ -94,15 +98,13 @@ input:placeholder-shown{
   margin: 5px;
   padding: 15px;
   margin: 12px;
-  
-
+}
+h1{
+  font-size: 18px; 
+  margin-top: 2px;
 }
 .note {
   white-space: pre-line
-}
-h3{
-  margin-top: 2px;
-  
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .6s;
