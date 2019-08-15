@@ -130,7 +130,7 @@ h1{
 .hideButton {
   display: none;
 }
-#listNote img{
+.trashImg{
   width: 20px;
   margin: 0px;
   margin-bottom: -2px;
