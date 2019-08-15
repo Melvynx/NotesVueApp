@@ -117,12 +117,21 @@ h1{
   position: absolute;
   bottom: 6px;
   left: 14px;
-  background-color: #202124;
-  border: none;
+  background-color: #d1d1d9;
+  border: 1px solid #d1d1d9;
+  border-radius: 10px;
+  transition-property: background-color, border;
+  transition-duration: 2s;
+}
+.buttonDelete:hover{
+  background-color: #93969c;
+  border: 1px solid #93969c;
 }
 .hideButton {
   display: none;
 }
 #listNote img{
   width: 20px;
+  margin: 0px;
+  margin-bottom: -2px;
 }

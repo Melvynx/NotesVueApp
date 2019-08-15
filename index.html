@@ -20,7 +20,7 @@
       <div class="note" :data-id=note.id @mouseover="mouseOver" @mouseleave="mouseLeave" v-for="note in listNotes">
         <h1>{{ note.titre }}</h3>
         <p>{{ note.note }}</p>
-        <button class="buttonDelete hideButton" v-on:click="deleteNote"><img src="image/index.png"></button>
+        <button class="buttonDelete hideButton" v-on:click="deleteNote"><img src="image/trash.png"></button>
       </div>
     </div>
     
