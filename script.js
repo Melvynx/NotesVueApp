@@ -24,7 +24,7 @@ const checkedNote = function(note) {
   }
 }
 const findTheBiggestID = function() {
-  let biggestID = Math.max(...listNote.listNotes.map(item => item.id)) + 1;
+  let biggestID = Math.max(...listNote.notes.map(item => item.id)) + 1;
   return biggestID;
 }
 //variable
@@ -34,7 +34,7 @@ let message23 = "";
 const listNote = new Vue ({
   el: "#listNote",
   data: {
-    listNotes: [{id:"0", titre: 'Salut', note:'blabla'},{ id: "1", titre: "aucun sens", note: "Pourquoi ce n'est pas possible d'aller à l'école quand je pense que les enfants n'aime pas les chaise mais si il le pense moi je le pense"}, {  id: "2", titre: "l'envie des pouls", note: "si les poules avait des dents je pense que je souhaiterais devenir une poule"}, { id: "3", titre: "1 éléphant grand", note: "Lorsque je suis aller à la maison\n j'ai vue un éléphant."}, { id: "4", titre: "le secret de jane", note: "la première fois que j'ai vue JANE je pensais pas pouvoir l'aime"}],
+    notes: [{id:"0", titre: 'Salut', note:'blabla'},{ id: "1", titre: "aucun sens", note: "Pourquoi ce n'est pas possible d'aller à l'école quand je pense que les enfants n'aime pas les chaise mais si il le pense moi je le pense"}, {  id: "2", titre: "l'envie des pouls", note: "si les poules avait des dents je pense que je souhaiterais devenir une poule"}, { id: "3", titre: "1 éléphant grand", note: "Lorsque je suis aller à la maison\n j'ai vue un éléphant."}, { id: "4", titre: "le secret de jane", note: "la première fois que j'ai vue JANE je pensais pas pouvoir l'aime"}],
     seen: true,
   },
   methods: {
@@ -60,11 +60,24 @@ const listNote = new Vue ({
       const parentElement = event.currentTarget.parentElement;
       const id = parentElement.getAttribute('data-id');
 
-      const index = listNote.listNotes.findIndex(note => note.id === id);
-      
+      const index = listNote.notes.findIndex(note => note.id === id);
+      console.log(index);
       if(index > -1) {
-        listNote.listNotes.splice(index, 1);
+        listNote.notes.splice(index, 1);
       }
+    },
+    editNote: function(event) {
+      const parentElement = event.currentTarget;
+      const id = parentElement.getAttribute('data-id');
+      const index = listNote.notes.findIndex(note => note.id === id);
+      console.log("editClick");
+      console.log(index);
+      console.log(listNote.notes[index])
+      infoAfterSend.infoAfterSendMsg = "Vous êtes sur le point de modifier une note.";
+      infoAfterSend.styleObject.color = "black";
+      infoAfterSend.styleObject.backgroundcolor = "white";
+      msgSendNote();
+      createNote.message = listNote.notes[index].note;
     }
   }
 });
@@ -86,7 +99,7 @@ const createNote = new Vue({
     clickSendNote: function () {
       if (checkedTitle(this.titre) && checkedNote(this.message)) {
         
-        listNote.listNotes.push({ id: String(findTheBiggestID()), titre : this.titre, note : this.message});
+        listNote.notes.push({ id: String(findTheBiggestID()), titre : this.titre, note : this.message});
         console.log("it's pushed");
         this.message = "";
         this.titre = "";
@@ -106,4 +119,4 @@ const infoAfterSend = new Vue({
     }
   }
 })
-listNote.listNotes.find(function(element) { return element.id == 2 })
+listNote.notes.find(function(element) { return element.id == 2 })
