@@ -78,6 +78,7 @@ const listNote = new Vue ({
       infoAfterSend.styleObject.backgroundcolor = "white";
       msgSendNote();
       createNote.message = listNote.notes[index].note;
+      createNote.titre = listNote.notes[index].titre;
     }
   }
 });
@@ -90,8 +91,8 @@ const createNote = new Vue({
   },
   methods: {
     change: function (event) {
-      messageSplit = this.message.split("\n");
-      messageSplitLength = messageSplit.length;
+      const messageSplit = this.message.split("\n");
+      const messageSplitLength = messageSplit.length;
       if (messageSplitLength > 2) {
         this.rows = messageSplitLength + 1;
       }
