@@ -36,6 +36,11 @@ const listNote = new Vue ({
   data: {
     notes: [{id:"0", titre: 'Salut', note:'blabla'},{ id: "1", titre: "aucun sens", note: "Pourquoi ce n'est pas possible d'aller à l'école quand je pense que les enfants n'aime pas les chaise mais si il le pense moi je le pense"}, {  id: "2", titre: "l'envie des pouls", note: "si les poules avait des dents je pense que je souhaiterais devenir une poule"}, { id: "3", titre: "1 éléphant grand", note: "Lorsque je suis aller à la maison\n j'ai vue un éléphant."}, { id: "4", titre: "le secret de jane", note: "la première fois que j'ai vue JANE je pensais pas pouvoir l'aime"}],
     seen: true,
+    seenTitre: true,
+    seenTitreInput: false,
+    seenNote: true,
+    seenNoteInput: false,
+    changeNoteTitle: "",
   },
   methods: {
     mouseOver: function (event) {
@@ -59,26 +64,27 @@ const listNote = new Vue ({
     deleteNote: function(event) {
       const parentElement = event.currentTarget.parentElement;
       const id = parentElement.getAttribute('data-id');
-
       const index = listNote.notes.findIndex(note => note.id === id);
+
       console.log(index);
       if(index > -1) {
         listNote.notes.splice(index, 1);
       }
+      return true;
+    },
+    editTitle: function(event) {
+      const children = event.currentTarget.parentElement.children;
+      this.changeNoteTitle = children[0].innerHTML;
+      children[0].classList.add("hideInput");
+      children[1].classList.remove("hideInput");
+     // children[1].classList.add("showInput");
+      children[2].classList.remove("hideInput");
     },
     editNote: function(event) {
-      const parentElement = event.currentTarget;
-      const id = parentElement.getAttribute('data-id');
-      const index = listNote.notes.findIndex(note => note.id === id);
-      console.log("editClick");
-      console.log(index);
-      console.log(listNote.notes[index])
-      infoAfterSend.infoAfterSendMsg = "Vous êtes sur le point de modifier une note.";
-      infoAfterSend.styleObject.color = "black";
-      infoAfterSend.styleObject.backgroundcolor = "white";
-      msgSendNote();
-      createNote.message = listNote.notes[index].note;
-      createNote.titre = listNote.notes[index].titre;
+      const children = event.currentTarget.parentElement.children
+      children[3].classList.add("hideInput");
+      children[4].classList.remove("hideInput");
+      children[5].classList.remove("hideInput");
     }
   }
 });

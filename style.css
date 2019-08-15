@@ -12,7 +12,7 @@ body{
   padding: 8px;
   margin-bottom: 20px;
 }
-textarea{
+.createNoteTextArea{
   resize: none;
   font-family: Arial;
   font-size: 16px;
@@ -22,12 +22,12 @@ textarea{
   margin-left: 8px;
   color: #d1d1d9;
 }
-textarea:placeholder-shown{
+.createNoteTextArea:placeholder-shown{
   color: #93969c;
 }
 
 
-input[type=text]{
+.titleCreate{
   border: 2px solid #2d2e30;
   background-color: #2d2e30;
   font-size: 18px;
@@ -36,15 +36,15 @@ input[type=text]{
   margin-left: 8px;
   color: #d1d1d9;
 }
-input[id="titleNote"]{
+.titleCreate {
   transition-property: border-bottom;
   transition-duration: 2s;
   display: block;
 }
-input[id="titleNote"]:hover{
+.titleCreate :hover{
   border-bottom: 1px solid #d1d1d9;
 }
-input[type=button]{
+.createNoteButton{
   border: 2px solid #2d2e30;
   background-color: #2d2e30;
   color: #d1d1d9;
@@ -56,7 +56,7 @@ input[type=button]{
   transition-property: background-color, border;
   transition-duration: 1s;
 }
-input[type=button]:hover{
+.createNoteButto:hover{
   background-color: #444549;
 }
 input:placeholder-shown{
@@ -127,11 +127,48 @@ h1{
   background-color: #93969c;
   border: 1px solid #93969c;
 }
-.hideButton {
-  display: none;
-}
 #listNote img{
   width: 20px;
   margin: 0px;
   margin-bottom: -2px;
+}
+.hideButton {
+  display: none;
+}
+.hideInput {
+  display: none;
+}
+.showInput {
+  display: block;
+}
+.changeNoteButton{
+  position: absolute;
+  border: 1px solid #5f6368;
+  background-color: #2d2e30;
+  color: #d1d1d9;
+  border-radius: 10px;
+  padding: 5px;
+  transition-property: background-color, border;
+  transition-duration: 1s;
+}
+.changeNoteButton:hover{
+  background-color: #444549;
+}
+.ButtonPositionTitle{
+
+}
+.ButtonPositionNote{
+
+}
+.changeNoteTextarea {
+  margin-bottom: 15px;
+}
+.changeNoteInput{
+  border: 2px solid #2d2e30;
+  background-color: #2d2e30;
+  font-size: 18px; 
+  font-weight: bold;
+  width: ;
+  color: #d1d1d9;
+  border-bottom: 1px solid #d1d1d9;
 }

@@ -7,9 +7,9 @@
   </head>
   <body>
     <div id="createNote">
-      <input v-model="titre" type="text" id="titleNote" placeholder="Titre...">
-      <textarea v-model="message" v-on:keyup="change" id="containedNote" placeholder="Note..." v-bind:rows="rows"></textarea><br/>
-      <input type="button" v-on:click="clickSendNote"  id="sendNote" value="Noter">
+      <input v-model="titre" type="text" class="titleCreate" id="titleNote" placeholder="Titre...">
+      <textarea class="createNoteTextArea" v-model="message" v-on:keyup="change" class="noteCreate"id="containedNote" placeholder="Note..." v-bind:rows="rows"></textarea><br/>
+      <input class="createNoteButton" type="button" v-on:click="clickSendNote"  id="sendNote" value="Noter">
     </div>
     <div id="infoAfterSend" v-bind:style="styleObject">
       <transition name="fade">
@@ -17,9 +17,13 @@
       </transition>
     </div>
     <div id="listNote">
-      <div class="note" :data-id=note.id v-on:click="editNote" @mouseover="mouseOver" @mouseleave="mouseLeave" v-for="note in notes">
-        <h1>{{ note.titre }}</h3>
-        <p>{{ note.note }}</p>
+      <div class="note" :data-id=note.id @mouseover="mouseOver" @mouseleave="mouseLeave" v-for="note in notes">
+        <h1 v-on:click="editTitle" class="">{{ note.titre }}</h3>
+        <input class="hideInput changeNoteInput" type="text" v-bind:value="changeNoteTitle">
+        <input class="changeNoteButton ButtonPositionTitle hideInput" type="button" value="Modifier">
+        <p v-on:click="editNote" class="">{{ note.note }}</p>
+        <textarea class="changeNoteTextarea hideInput" type="text" value="note.note">{{ note.note }}</textarea>
+        <input class="changeNoteButton ButtonPositionNote hideInput" type="button" value="Modifier">
         <button class="buttonDelete hideButton" v-on:click="deleteNote"><img src="image/trash.png"></button>
       </div>
     </div>
