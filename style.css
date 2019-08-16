@@ -11,6 +11,7 @@ body{
   width: 500px;
   padding: 8px;
   margin-bottom: 20px;
+  box-shadow: 0px 0px 10px 1px black; 
 }
 .createNoteTextArea{
   resize: none;
@@ -96,14 +97,17 @@ input:placeholder-shown{
   border-radius: 5px;
   margin: 10px;
   padding: 15px;
+  box-shadow: 0px 0px 3px 1px black; 
+  white-space: pre-line;
+  position: relative;
 }
 h1{
   font-size: 18px; 
-  margin-top: 2px;
+  margin-top: -16px;
+  margin-bottom: -5px;
 }
-.note {
-  white-space: pre-line;
-  position: relative;
+.noteContenue{
+  font-size: 16px;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity .6s;
@@ -146,7 +150,7 @@ h1{
   background-color: #2d2e30;
   border: 1px solid #2d2e30;
   color: #d1d1d9;
-  margin-top: 3px;
+  margin-top: 15px;
 }
 .changeNoteInput{
   border: 2px solid #2d2e30;

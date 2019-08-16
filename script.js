@@ -1,6 +1,6 @@
 //utile
 const msgSendNote = function() {
-  infoAfterSend.styleObject.top = "10%"
+  infoAfterSend.styleObject.top = "10%";
   infoAfterSend.seen = true;
   setTimeout(function () { infoAfterSend.styleObject.top = '-600px' }, 2000);
   setTimeout(function () { infoAfterSend.seen = false; }, 2000);
@@ -34,95 +34,23 @@ let message23 = "";
 const listNote = new Vue ({
   el: "#listNote",
   data: {
-    notes: [{id:"0", titre: 'Salut', note:'blabla'},{ id: "1", titre: "aucun sens", note: "Pourquoi ce n'est pas possible d'aller à l'école quand je pense que les enfants n'aime pas les chaise mais si il le pense moi je le pense"}, {  id: "2", titre: "l'envie des pouls", note: "si les poules avait des dents je pense que je souhaiterais devenir une poule"}, { id: "3", titre: "1 éléphant grand", note: "Lorsque je suis aller à la maison\n j'ai vue un éléphant."}, { id: "4", titre: "le secret de jane", note: "la première fois que j'ai vue JANE je pensais pas pouvoir l'aime"}],
-    seen: true,
-    seenTitre: true,
-    seenTitreInput: false,
-    seenNote: true,
-    seenNoteInput: false,
-    newTitle: "",
-    newNote: "",
-    
+    notes: [],
+  },
+  mounted() {
+    if (localStorage.notes) {
+      this.notes = JSON.parse(localStorage.notes);
+    } else {
+      this.notes = [];
+    }
+  },
+  watch: {
+    notes(notes) {
+      localStorage.notes = JSON.stringify(notes);
+    }
   },
   methods: {
-    mouseOver: function (event) {
-      const children = event.currentTarget.children;
-      // Toujours le dernier élément du tableau
-      const deleteButton = children[children.length - 1];
-
-      if(deleteButton) {
-        deleteButton.classList.remove("hideButton");
-      }
-    },
-    mouseLeave: function (event) {
-      const children = event.currentTarget.children;
-      const deleteButton = children[children.length - 1];
-      
-      if(deleteButton) {
-        deleteButton.classList.add("hideButton");
-      }
-    },
-    deleteNote: function(event) {
-      const parentElement = event.currentTarget.parentElement;
-      const id = parentElement.getAttribute('data-id');
-      const index = listNote.notes.findIndex(note => note.id === id);
-
-      console.log(index);
-      if(index > -1) {
-        listNote.notes.splice(index, 1);
-      }
-      return true;
-    },
-    editTitle: function(event) {
-      const children = event.currentTarget.parentElement.children;
-      this.newTitle = children[0].innerHTML;
-      const [title, content] = children;
-      title.classList.add("hideInput");
-      content.classList.remove("hideInput");
-      content.focus();
-      // When the elements loose focus, we should save the note
-      const save = (event) => {
-        title.classList.remove("hideInput");
-        content.classList.add("hideInput");
-        
-        const parentElement = event.currentTarget.parentElement;
-        const id = parentElement.getAttribute('data-id');
-        const index = listNote.notes.findIndex(note => note.id === id);
-        
-        console.log(index);
-        if(index > -1) {
-          debugger;
-          listNote.notes[index].titre = this.newTitle;
-        }
-
-      };
-
-      title.addEventListener('focusout', save);
-      content.addEventListener('focusout', save);
-  
-    },
-    editNote: function(event) {
-      const children = event.currentTarget.parentElement.children;
-      this.newNote = children[2].innerHTML;
-      const note = children[2];
-      const content = children[3];
-      note.classList.add("hideInput");
-      content.classList.remove("hideInput");
-      content.focus();
-
-      const save = (event) => {
-        note.classList.remove("hideInput");
-        content.classList.add("hideInput");
-        const parentElement = event.currentTarget.parentElement;
-        const id = parentElement.getAttribute('data-id');
-        const index = listNote.notes.findIndex(note => note.id === id);
-
-        if (index > -1) {
-          listNote.notes[index].note = this.newNote;
-        }
-      }
-      note.addEventListener('focusout', save);
-      content.addEventListener('focusout', save);
+    persist: function() {
+      localStorage.notes = JSON.stringify(this.notes);
     }
   }
 });
@@ -142,15 +70,14 @@ const createNote = new Vue({
       }
     },
     clickSendNote: function () {
-      if (checkedTitle(this.titre) && checkedNote(this.message)) {
-        
+      if (checkedTitle(this.titre) && checkedNote(this.message)) {   
         listNote.notes.push({ id: String(findTheBiggestID()), titre : this.titre, note : this.message});
-        console.log("it's pushed");
         this.message = "";
         this.titre = "";
         msgSendNote();
         infoAfterSend.infoAfterSendMsg = "La note à été sauvegarder.";
       }
+      
     }
   }
 })
@@ -164,4 +91,3 @@ const infoAfterSend = new Vue({
     }
   }
 })
-listNote.notes.find(function(element) { return element.id == 2 })
