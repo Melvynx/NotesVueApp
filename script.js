@@ -40,7 +40,9 @@ const listNote = new Vue ({
     seenTitreInput: false,
     seenNote: true,
     seenNoteInput: false,
-    changeNoteTitle: "",
+    newTitle: "",
+    newNote: "",
+    
   },
   methods: {
     mouseOver: function (event) {
@@ -74,17 +76,54 @@ const listNote = new Vue ({
     },
     editTitle: function(event) {
       const children = event.currentTarget.parentElement.children;
-      this.changeNoteTitle = children[0].innerHTML;
-      children[0].classList.add("hideInput");
-      children[1].classList.remove("hideInput");
-     // children[1].classList.add("showInput");
-      children[2].classList.remove("hideInput");
+      this.newTitle = children[0].innerHTML;
+      const [title, content] = children;
+      title.classList.add("hideInput");
+      content.classList.remove("hideInput");
+      content.focus();
+      // When the elements loose focus, we should save the note
+      const save = (event) => {
+        title.classList.remove("hideInput");
+        content.classList.add("hideInput");
+        
+        const parentElement = event.currentTarget.parentElement;
+        const id = parentElement.getAttribute('data-id');
+        const index = listNote.notes.findIndex(note => note.id === id);
+        
+        console.log(index);
+        if(index > -1) {
+          debugger;
+          listNote.notes[index].titre = this.newTitle;
+        }
+
+      };
+
+      title.addEventListener('focusout', save);
+      content.addEventListener('focusout', save);
+  
     },
     editNote: function(event) {
-      const children = event.currentTarget.parentElement.children
-      children[3].classList.add("hideInput");
-      children[4].classList.remove("hideInput");
-      children[5].classList.remove("hideInput");
+      const children = event.currentTarget.parentElement.children;
+      this.newNote = children[2].innerHTML;
+      const note = children[2];
+      const content = children[3];
+      note.classList.add("hideInput");
+      content.classList.remove("hideInput");
+      content.focus();
+
+      const save = (event) => {
+        note.classList.remove("hideInput");
+        content.classList.add("hideInput");
+        const parentElement = event.currentTarget.parentElement;
+        const id = parentElement.getAttribute('data-id');
+        const index = listNote.notes.findIndex(note => note.id === id);
+
+        if (index > -1) {
+          listNote.notes[index].note = this.newNote;
+        }
+      }
+      note.addEventListener('focusout', save);
+      content.addEventListener('focusout', save);
     }
   }
 });

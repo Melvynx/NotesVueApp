@@ -3,7 +3,7 @@ body{
   color: #d1d1d9;
   font-family: 'Arial';
 }
-#createNote{
+.createNewNote{
   margin: auto;
   border: 1px solid #5f6368;
   background-color: #2d2e30;;
@@ -41,7 +41,7 @@ body{
   transition-duration: 2s;
   display: block;
 }
-.titleCreate :hover{
+.titleCreate:hover{
   border-bottom: 1px solid #d1d1d9;
 }
 .createNoteButton{
@@ -56,13 +56,13 @@ body{
   transition-property: background-color, border;
   transition-duration: 1s;
 }
-.createNoteButto:hover{
+.createNoteButton:hover{
   background-color: #444549;
 }
 input:placeholder-shown{
   color: #93969c;  
 }
-#infoAfterSend{
+.InfoWhenYouSend{
   position: absolute;
   top: -600px;;
   left: 35%;
@@ -72,32 +72,30 @@ input:placeholder-shown{
   border-radius: 10px;
   max-width: 300px;
 }
-#infoAfterSend h2{
+.InfoWhenYouSend h2{
   margin: 0px;
   font-size: 18px;
 }
 
 
 
-#listNote{
+.listOfNote{
   display: flex;
   align-items: flex-start;
   justify-content: center;
   height: 500px;
   flex-wrap: wrap;
-  padding-left: 30px;
+  padding-left: 40px;
   padding-right: 30px;
   
 }
 .note {
   border: 1px solid #5f6368;
   background-color: #2d2e30;
-  max-width: 320px;
-  min-width: 150px;
+  width: 250px;
   border-radius: 5px;
-  margin: 5px;
+  margin: 10px;
   padding: 15px;
-  margin: 12px;
 }
 h1{
   font-size: 18px; 
@@ -127,11 +125,6 @@ h1{
   background-color: #93969c;
   border: 1px solid #93969c;
 }
-#listNote img{
-  width: 20px;
-  margin: 0px;
-  margin-bottom: -2px;
-}
 .hideButton {
   display: none;
 }
@@ -141,7 +134,7 @@ h1{
 .showInput {
   display: block;
 }
-.changeNoteButton{
+/*.changeNoteButton{
   position: absolute;
   border: 1px solid #5f6368;
   background-color: #2d2e30;
@@ -158,17 +151,32 @@ h1{
 
 }
 .ButtonPositionNote{
-
-}
+  bottom: 115px;
+}*/
 .changeNoteTextarea {
   margin-bottom: 15px;
+  width: 250px;
+  min-height: 60px;
+  max-height:  300px;
+  max-width: 250px;
+  resize: both;
+  font-family: Arial;
+  font-size: 16px;
+  background-color: #2d2e30;
+  border: 1px solid #2d2e30;
+  color: #d1d1d9;
+  margin-top: 3px;
 }
 .changeNoteInput{
   border: 2px solid #2d2e30;
   background-color: #2d2e30;
   font-size: 18px; 
   font-weight: bold;
-  width: ;
+  width: 190px;
   color: #d1d1d9;
   border-bottom: 1px solid #d1d1d9;
+}
+.svgTrash{
+  width: 20px;
+  margin-bottom: -7px;
 }
