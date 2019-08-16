@@ -56,7 +56,6 @@ const listNote = new Vue ({
     },
     mouseLeave: function (event) {
       const children = event.currentTarget.children;
-      // Toujours le dernier élément du tableau
       const deleteButton = children[children.length - 1];
       
       if(deleteButton) {

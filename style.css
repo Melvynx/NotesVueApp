@@ -134,25 +134,6 @@ h1{
 .showInput {
   display: block;
 }
-/*.changeNoteButton{
-  position: absolute;
-  border: 1px solid #5f6368;
-  background-color: #2d2e30;
-  color: #d1d1d9;
-  border-radius: 10px;
-  padding: 5px;
-  transition-property: background-color, border;
-  transition-duration: 1s;
-}
-.changeNoteButton:hover{
-  background-color: #444549;
-}
-.ButtonPositionTitle{
-
-}
-.ButtonPositionNote{
-  bottom: 115px;
-}*/
 .changeNoteTextarea {
   margin-bottom: 15px;
   width: 250px;
