@@ -1,59 +1,72 @@
 Vue.component('note', {
-  props: ["note"],
-  data: function() {
-    return{
+  props: ['note'],
+  data() {
+    return {
+      showLabel: false,
       showDelete: false,
       showEditTitle: false,
       showEditNote: false,
       rowChange: 3,
-    }
+      infoDeleteTitle: 'Un click pour supprimer une note.',
+      infoLabelTitle: 'Un click pour modifier le Label (couleur)',
+      styleButton: {
+        background: '#2d2e30',
+        border: '1px solid #d1d1d9',
+      },
+      showListLabel: false,
+    };
   },
 
   methods: {
-    mouseOver: function (event) {
+    mouseOver(event) {
       this.showDelete = true;
+      this.showLabel = true;
     },
-    mouseLeave: function (event) {
+    mouseLeave(event) {
       this.showDelete = false;
+      this.showLabel = false;
     },
-    deleteNote: function(event) {
-      const id = this.note.id;
-      const index = listNote.notes.findIndex(note => note.id === id);
-      if(index > -1) {
+    deleteNote(event) {
+      const { id } = this.note;
+      const index = listNote.notes.findIndex((note) => note.id === id);
+      if (index > -1) {
         listNote.notes.splice(index, 1);
       }
       return true;
     },
-    editTitle: function(event) {
-      this.showEditTitle = true;        
+    listLabel() {
+      this.showListLabel = !this.showListLabel;
+    },
+    editTitle(event) {
+      this.showEditTitle = true;
       this.$nextTick(() => this.$refs.refEditTitle.focus());
     },
-    stopEditTitle: function() {
+    stopEditTitle() {
       this.showEditTitle = false;
     },
-    editNote: function(event) {
+    editNote(event) {
       this.showEditNote = true;
       this.$nextTick(() => this.$refs.refEditNote.focus());
     },
-    stopEditNote: function() {
+    stopEditNote() {
       this.showEditNote = false;
     },
-    changeRow: function(event) {
-      const messageSplit = this.note.note.split("\n");
+    changeRow(event) {
+      const messageSplit = this.note.note.split('\n');
       const messageSplitLength = messageSplit.length;
       if (messageSplitLength > 2) {
         this.rowChange = messageSplitLength + 1;
       }
     },
-    countNombreCaractres: function() {
+    countNombreCaractres() {
       titleLenght = this.note.titre.length;
-    
+
       if (titleLenght > 31) {
         this.stopEditTitle();
-        infoAfterSend.infoAfterSendMsg = "Merci de ne pas dépasser 30 caractères pour le titre.";
-        msgSendNote();  
-      } 
-    }
+        infoAfterSend.infoAfterSendMsg = 'Merci de ne pas dépasser 30 caractères pour le titre.';
+        msgSendNote();
+      }
+    },
   },
   template: `
   <div class="note" @mouseover="mouseOver" @mouseleave="mouseLeave">
@@ -75,9 +88,24 @@ Vue.component('note', {
       v-on:input="$emit('edit-note-storage')"
       v-model="note.note">
     </textarea> 
-    <button class="buttonDelete" v-show="showDelete" v-on:click="deleteNote">
+    <button v-bind:title="infoDeleteTitle" class="buttonDelete" v-show="showDelete" v-on:click="deleteNote">
       <img src="trash.svg" class="svgTrash" />
     </button>
+    <div id="changeLabelBlock" class="changeLabelBlock">
+      <button 
+        v-bind:style="styleButton" v-bind:title="infoLabelTitle" class="buttonLabel" v-show="showLabel" v-on:click="listLabel">
+      </button>
+      <div class="listLabel" v-show="showListLabel" id="listLabel">
+        <button style="background: #2d2e30; border-color: #93969c" class="buttonLabelColor"/>
+        <button style="background: #21355d; border-color: #64618e" class="buttonLabelColor"/>
+        <button style="background: #5a2754; border-color: #8f4bb0" class="buttonLabelColor"/>
+        <button style="background: #336c72; border-color: #6e7c88" class="buttonLabelColor"/>
+        <button style="background: #6e2525; border-color: #86474e" class="buttonLabelColor"/>
+        <button style="background: #5b4429; border-color: #7b6556" class="buttonLabelColor"/>
+        <button style="background: #395741; border-color: #404c5b" class="buttonLabelColor"/>
+        <button style="background: #21355d; border-color: #64618e" class="buttonLabelColor"/>
+      </div>
+    </div>
   </div>
-  `
-})
+  `,
+});

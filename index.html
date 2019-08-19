@@ -7,9 +7,7 @@
   </head>
   <body>
     <div id="createNote" class="createNewNote">
-      <input v-model="titre" type="text" class="titleCreate" id="titleNote" placeholder="Titre...">
-      <textarea class="createNoteTextArea" v-model="message" v-on:keyup="change" class="noteCreate"id="containedNote" placeholder="Note..." v-bind:rows="rows"></textarea><br/>
-      <input class="createNoteButton" type="button" v-on:click="clickSendNote"  id="sendNote" value="Noter">
+      <newnoteform></newnoteform>
     </div>
     <div id="infoAfterSend" class="InfoWhenYouSend" v-bind:style="styleObject">
       <transition name="fade">
@@ -21,6 +19,7 @@
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="component_note.js"></script>
+    <script src="component_new_note.js"></script>
     <script src="script.js"></script>
   </body>
 </html> 
