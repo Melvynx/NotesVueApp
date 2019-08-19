@@ -110,7 +110,7 @@ h1{
   font-size: 16px;
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .6s;
+  transition: opacity 1s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -176,9 +176,13 @@ h1{
   width: 22px;
   border-radius: 20px;
   border: none;
-  box-shadow: 1px 1px 8px 0.3px white;
+  box-shadow: 0px 0px 8px 0.5px black;
+  border: 1px solid black;
   transition-property: box-shadow;
   transition-duration: 0.5s;
+}
+.buttonColor:hover{
+  box-shadow: 2px 2px 12px 1px black; 
 }
 .colorForNewNote{
   height: 22px;
@@ -222,19 +226,23 @@ h1{
   margin: 2px;
   border: 1px solid #7a7a74;
 }
+.buttonLabelColor:hover{
+  border: 2px solid black;
+}
 .validationOfDelete{
   margin: auto;
   background-color: #2d2e30;
   border: 1px solid #5f5f5f;
   padding: 10px;
   border-radius: 10px;
+  
 
 }
 .buttonYes, .buttonNo{
   border: 1px solid #5f5f5f;
   background-color: #2d2e30;
   color: #d1d1d9;
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
   border-radius: 8px;
   font-size: 14px;
   transition-property: background-color;
@@ -252,9 +260,9 @@ h1{
   margin-top: 0px;
 }
 .infoValidationDelete{
-  border-bottom: -20px;
+  margin-bottom: -2px;
 }
-.blockofval{
+.blockOfValidationDeleteNote{
   display: grid;  
   position: fixed;
   width: 100%;
@@ -267,4 +275,19 @@ h1{
 .titleValidationDelete{
   color: #b99cb4;
   font-weight: bold;
+}
+.deleteButtonTransition-enter-active, .deleteButtonTransition-leave-active {
+  transition: opacity .5s;
+}
+.deleteButtonTransition-enter, .deleteButtonTransition-leave-to {
+  opacity: 0;
+}
+.notes-note{
+}
+.notes-note-active, .notes-note-active {
+  transition: all 1s;
+}
+.notes-enter, .notes-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
 }

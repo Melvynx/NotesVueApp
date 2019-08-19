@@ -15,7 +15,10 @@
       </transition>
     </div>
     <div id="listNote" class="listOfNote">
-      <note v-for="note in notes" v-bind:note="note" v-on:edit-note-storage="persist"/>
+      <!--<transition-group name="notes" tag="div">-->
+        <note v-for="note in notes" v-bind:note="note" v-bind:key="note" class="notes-note" v-on:edit-note-storage="persist"/>
+      <!--</transition-group>-->
+      
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="component_note.js"></script>
