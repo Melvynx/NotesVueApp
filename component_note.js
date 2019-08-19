@@ -1,9 +1,13 @@
+<<<<<<< HEAD
 const backgroundColors = ['#69626d', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'];
+=======
+const backgroundColors = ['#2d2e30', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000 ', '#15075f', '#5c0029'];
+>>>>>>> Change color
 Vue.component('note', {
   props: ['note'],
   data() {
     return {
-      color: backgroundColors[this.note.color],
+      color: backgroundColors[this.note.color], 
       showColor: false,
       showDelete: false,
       showEditTitle: false,
