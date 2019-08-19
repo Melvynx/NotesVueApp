@@ -107,13 +107,13 @@ Vue.component('note', {
       v-on:input="$emit('edit-note-storage')"
       v-model="note.note">
     </textarea> 
-    <button v-bind:title="infoDeleteTitle" class="buttonDelete" v-show="showDelete" v-on:click="yesDeleteNote">
+    <button v-bind:title="infoDeleteTitle" class="buttonDelete" v-show="showDelete" v-on:click="deleteNote">
       <img src="trash.svg" class="svgTrash" />
     </button>
     <div class="blockofval" v-show="showValidationDelete">
       <div class="validationOfDelete">
         <h3 class="questionValidationDelete">Voulez vous vraiment supprimer cette note ? </h3>
-        <p class="infoValidationDelete">Le titre de votre note est : {{ note.titre }}.</p>
+        <p class="infoValidationDelete">Le titre de votre note est : <span class="titleValidationDelete">{{ note.titre }}</span>.</p>
         <button v-on:click="yesDeleteNote" class="buttonYes">OUI</button>
         <button v-on:click="noDeleteNote" class="buttonNo">NON</button>
       </div>

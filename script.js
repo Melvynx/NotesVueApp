@@ -22,9 +22,10 @@ const checkedNote = function (note) {
   return false;
 };
 const findTheBiggestID = function () {
-  const biggestID = Math.max(...listNote.notes.map((item) => item.id)) + 1;
-  return biggestID;
+  const maxExistingId = Math.max(...listNote.notes.map((item) => item.id));
+  return Math.max(maxExistingId, 0) + 1;
 };
+
 // variable
 let infoAfterSendMsg;
 const notesLocalStorage = JSON.parse(localStorage.notes);

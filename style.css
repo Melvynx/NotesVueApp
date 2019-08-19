@@ -104,6 +104,7 @@ h1{
   font-size: 18px; 
   margin-top: -16px;
   margin-bottom: -5px;
+  font-weight: bold;
 }
 .noteContenue{
   font-size: 16px;
@@ -145,6 +146,7 @@ h1{
   width: 190px;
   color: #d1d1d9;
   border-bottom: 1px solid #d1d1d9;
+  margin-top: 2px;
 }
 /*Button for delete note*/
 .buttonDelete{
@@ -250,7 +252,7 @@ h1{
   margin-top: 0px;
 }
 .infoValidationDelete{
-
+  border-bottom: -20px;
 }
 .blockofval{
   display: grid;  
@@ -260,4 +262,9 @@ h1{
   top: 0;
   left: 0;
   z-index: 12;
+  background-color: #02020293;
+}
+.titleValidationDelete{
+  color: #b99cb4;
+  font-weight: bold;
 }
