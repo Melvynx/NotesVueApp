@@ -1,72 +1,72 @@
 Vue.component('note', {
-  props: ["note"],
-  data: function() {
-    return{
+  props: ['note'],
+  data() {
+    return {
       showLabel: false,
       showDelete: false,
       showEditTitle: false,
       showEditNote: false,
       rowChange: 3,
-      infoDeleteTitle: "Un click pour supprimer une note.",
-      infoLabelTitle: "Un click pour modifier le Label (couleur)",
+      infoDeleteTitle: 'Un click pour supprimer une note.',
+      infoLabelTitle: 'Un click pour modifier le Label (couleur)',
       styleButton: {
-        background: "#2d2e30",
-        border: "1px solid #d1d1d9"
+        background: '#2d2e30',
+        border: '1px solid #d1d1d9',
       },
       showListLabel: false,
-    }
+    };
   },
 
   methods: {
-    mouseOver: function (event) {
+    mouseOver(event) {
       this.showDelete = true;
       this.showLabel = true;
     },
-    mouseLeave: function (event) {
+    mouseLeave(event) {
       this.showDelete = false;
       this.showLabel = false;
     },
-    deleteNote: function(event) {
-      const id = this.note.id;
-      const index = listNote.notes.findIndex(note => note.id === id);
-      if(index > -1) {
+    deleteNote(event) {
+      const { id } = this.note;
+      const index = listNote.notes.findIndex((note) => note.id === id);
+      if (index > -1) {
         listNote.notes.splice(index, 1);
       }
       return true;
     },
-    listLabel: function() {
+    listLabel() {
       this.showListLabel = !this.showListLabel;
     },
-    editTitle: function(event) {
-      this.showEditTitle = true;        
+    editTitle(event) {
+      this.showEditTitle = true;
       this.$nextTick(() => this.$refs.refEditTitle.focus());
     },
-    stopEditTitle: function() {
+    stopEditTitle() {
       this.showEditTitle = false;
     },
-    editNote: function(event) {
+    editNote(event) {
       this.showEditNote = true;
       this.$nextTick(() => this.$refs.refEditNote.focus());
     },
-    stopEditNote: function() {
+    stopEditNote() {
       this.showEditNote = false;
     },
-    changeRow: function(event) {
-      const messageSplit = this.note.note.split("\n");
+    changeRow(event) {
+      const messageSplit = this.note.note.split('\n');
       const messageSplitLength = messageSplit.length;
       if (messageSplitLength > 2) {
         this.rowChange = messageSplitLength + 1;
       }
     },
-    countNombreCaractres: function() {
+    countNombreCaractres() {
       titleLenght = this.note.titre.length;
-    
+
       if (titleLenght > 31) {
         this.stopEditTitle();
-        infoAfterSend.infoAfterSendMsg = "Merci de ne pas dépasser 30 caractères pour le titre.";
-        msgSendNote();  
-      } 
-    }
+        infoAfterSend.infoAfterSendMsg = 'Merci de ne pas dépasser 30 caractères pour le titre.';
+        msgSendNote();
+      }
+    },
   },
   template: `
   <div class="note" @mouseover="mouseOver" @mouseleave="mouseLeave">
@@ -107,5 +107,5 @@ Vue.component('note', {
       </div>
     </div>
   </div>
-  `
-})
+  `,
+});
