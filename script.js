@@ -59,25 +59,6 @@ const createNote = new Vue({
     rows: 3, 
     message: "",
     titre: "",
-  },
-  methods: {
-    change: function (event) {
-      const messageSplit = this.message.split("\n");
-      const messageSplitLength = messageSplit.length;
-      if (messageSplitLength > 2) {
-        this.rows = messageSplitLength + 1;
-      }
-    },
-    clickSendNote: function () {
-      if (checkedTitle(this.titre) && checkedNote(this.message)) {   
-        listNote.notes.push({ id: String(findTheBiggestID()), titre : this.titre, note : this.message});
-        this.message = "";
-        this.titre = "";
-        msgSendNote();
-        infoAfterSend.infoAfterSendMsg = "La note à été sauvegarder.";
-      }
-      
-    }
   }
 })
 const infoAfterSend = new Vue({
