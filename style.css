@@ -254,7 +254,7 @@ h1{
 .infoValidationDelete{
   border-bottom: -20px;
 }
-.blockofval{
+.blockOfValidationDeleteNote{
   display: grid;  
   position: fixed;
   width: 100%;

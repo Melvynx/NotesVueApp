@@ -1,9 +1,9 @@
-const backgroundColors = ['#2d2e30', '#177e89', '#32021f', '#8b635c', '#49306b', '#bc9cb0 ', '#5b9279', '#5c0029'];
+const backgroundColors = ['#2d2e30', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000 ', '#15075f', '#5c0029'];
 Vue.component('note', {
   props: ['note'],
   data() {
     return {
-      color: backgroundColors[this.note.color],
+      color: backgroundColors[this.note.color], 
       showColor: false,
       showDelete: false,
       showEditTitle: false,
@@ -110,7 +110,7 @@ Vue.component('note', {
     <button v-bind:title="infoDeleteTitle" class="buttonDelete" v-show="showDelete" v-on:click="deleteNote">
       <img src="trash.svg" class="svgTrash" />
     </button>
-    <div class="blockofval" v-show="showValidationDelete">
+    <div class="blockOfValidationDeleteNote" v-show="showValidationDelete">
       <div class="validationOfDelete">
         <h3 class="questionValidationDelete">Voulez vous vraiment supprimer cette note ? </h3>
         <p class="infoValidationDelete">Le titre de votre note est : <span class="titleValidationDelete">{{ note.titre }}</span>.</p>
@@ -128,8 +128,8 @@ Vue.component('note', {
         <button v-on:click="changeColor(2)" style="background: #32021f" class="buttonLabelColor"/>
         <button v-on:click="changeColor(3)" style="background: #8b635c" class="buttonLabelColor"/>
         <button v-on:click="changeColor(4)" style="background: #49306b" class="buttonLabelColor"/>
-        <button v-on:click="changeColor(5)" style="background: #bc9cb0" class="buttonLabelColor"/>
-        <button v-on:click="changeColor(6)" style="background: #5b9279" class="buttonLabelColor"/>
+        <button v-on:click="changeColor(5)" style="background: #6b2000" class="buttonLabelColor"/>
+        <button v-on:click="changeColor(6)" style="background: #15075f" class="buttonLabelColor"/>
         <button v-on:click="changeColor(7)" style="background: #5c0029" class="buttonLabelColor"/>
       </div>
     </div>
