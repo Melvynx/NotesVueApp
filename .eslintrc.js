@@ -20,6 +20,11 @@ module.exports = {
   ],
   rules: {
     'no-undef': 0,
-    'max-len': 0
+    'max-len': 0,
+    'no-unused-vars': 0,
+    'no-use-before-define': 0,
+    'func-names': 0,
+    'object-curly-spacing': 0,
+    'object-curly-newline': 0,
   },
 };
