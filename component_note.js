@@ -44,7 +44,6 @@ Vue.component('note', {
       if (messageSplitLength > 2) {
         this.rowChange = messageSplitLength + 1;
       }
-      console.log(messageSplitLength);
     },
     countNombreCaractres: function() {
       titleLenght = this.note.titre.length;
@@ -63,7 +62,7 @@ Vue.component('note', {
       v-on:click="editTitle">
       {{ note.titre }}
     </h1>
-    <input v-on:keyup="countNombreCaractres" v-show="showEditTitle" ref="refEditTitle" class="changeNoteInput" type="text" v-model="note.titre" @focusout="stopEditTitle" v-on:input="$emit('edit-note-storage')">
+    <input v-on:keyup.enter="stopEditTitle" v-on:keyup="countNombreCaractres" v-show="showEditTitle" ref="refEditTitle" class="changeNoteInput" type="text" v-model="note.titre" @focusout="stopEditTitle" v-on:input="$emit('edit-note-storage')">
     <p class="noteContenue" v-show="!showEditNote" v-on:click="editNote">{{ note.note }}</p>
     <textarea 
       v-show="showEditNote"

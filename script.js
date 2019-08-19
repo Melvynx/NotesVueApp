@@ -29,7 +29,6 @@ const findTheBiggestID = function() {
 }
 //variable
 let infoAfterSendMsg;
-let message23 = "";
 //vue.js
 const listNote = new Vue ({
   el: "#listNote",
