@@ -22,6 +22,11 @@
       </transition>
     </div>
     <div id="listNote" >
+      <div class="nothingNoteFind" v-show="nothingNoteFind">
+          <img class="svgNothing" src="nothing.svg"/>
+          <p>Vous n'avez pas encore effectuer de note avec cette couleur...</p>
+          <p>Crée en une !</p>
+      </div>
       <transition-group mode="out-in" name="notes" tag="div" class="listOfNote">
         <note v-for="note in notesFiltered()" v-bind:note="note" v-bind:key="note.id" class="notes-note" v-on:edit-note-storage="persist"/>
       </transition-group>

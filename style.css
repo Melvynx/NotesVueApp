@@ -167,6 +167,12 @@ h1{
   width: 20px;
   margin-bottom: -7px;
 }
+.nothingNoteFind{
+  text-align: center;
+}
+.svgNothing{
+  width: 150px;
+}
 /*Button for change label*/
 .buttonColor{
   position: absolute;
@@ -200,9 +206,9 @@ h1{
   width: 210px;
   padding: 5px;
   border-radius: 5px;
-  background-color: #69626d;
-  right: 90px;
-  bottom: 5px;
+  background-color: #d1d3d650;
+  right: 74px;
+  bottom: 6px;
 }
 .buttonColor:hover{
   box-shadow: 2px 2px 12px 1px black; 
@@ -212,18 +218,18 @@ h1{
   display: flex;
   flex-wrap: wrap;
   border: 1px solid #7a7a74;
-  width: 105px;
-  padding: 5px;
+  width: 210px;
+  padding: 2px 3px 2px 3px;
   border-radius: 12px;
   background-color: #d1d3d666;
-  bottom: 0px;
-  right: 10px;
+  bottom: 2px;
+  right: -3px;
 }
 .buttonLabelColor{
   height: 22px;
   width: 22px;
   border-radius: 20px;
-  margin: 2px;
+  margin: 1px;
   border: 1px solid #7a7a74;
 }
 .buttonLabelColor:hover{

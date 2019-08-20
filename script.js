@@ -34,7 +34,7 @@ const findColor = new Vue({
   el: '#find',
   data: {
     colorToFind: 'all',
-    options: [{ text: 'All', value: 'all' }, { text: 'Noir', value: '#69626d' }, { text: 'Cyan', value: '#177e89' }, { text: 'Sang', value: '#32021f' }, { text: 'Pastèle', value: '#8b635c' }, { text: 'Violet', value: '#49306b' }, { text: 'Orange', value: '#6b2000' }, { text: 'Bleu', value: '#15075f' }, { text: 'Rouge', value: '#5c0029' }],
+    options: [{ text: 'All', value: 'all' }, { text: 'Gris', value: '#69626d' }, { text: 'Cyan', value: '#177e89' }, { text: 'Sang', value: '#32021f' }, { text: 'Pastèle', value: '#8b635c' }, { text: 'Violet', value: '#49306b' }, { text: 'Orange', value: '#6b2000' }, { text: 'Bleu', value: '#15075f' }, { text: 'Rouge', value: '#5c0029' }],
   },
   mounted() {
     this.colorToFind = localStorage.colorToFind;
@@ -50,6 +50,7 @@ const listNote = new Vue({
   el: '#listNote',
   data: {
     notes: [],
+    nothingNoteFind: false,
   },
   mounted() {
     if (localStorage.notes) {
@@ -66,10 +67,17 @@ const listNote = new Vue({
       localStorage.notes = JSON.stringify(this.notes);
     },
     notesFiltered() {
+      const filterdArray = this.notes.filter((x) => x.color === findColor.colorToFind);
       if (findColor.colorToFind === 'all') {
+        this.nothingNoteFind = false;
         return this.notes;
       }
-      return this.notes.filter((x) => x.color === findColor.colorToFind);
+      if (filterdArray.length === 0) {
+        this.nothingNoteFind = true;
+        return filterdArray;
+      }
+      this.nothingNoteFind = false;
+      return filterdArray;
     },
   },
 });
