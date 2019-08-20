@@ -1,4 +1,4 @@
-const backgroundColors = ['#2d2e30', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'];
+const backgroundColors = ['#69626d', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'];
 Vue.component('note', {
   props: ['note'],
   data() {
@@ -12,7 +12,7 @@ Vue.component('note', {
       infoDeleteTitle: 'Un click pour supprimer une note.',
       infoLabelTitle: 'Un click pour modifier le Label (couleur)',
       styleButton: {
-        background: '#2d2e30',
+        background: '#69626d',
         border: '1px solid #d1d1d9',
       },
       showListColor: false,
@@ -131,7 +131,7 @@ Vue.component('note', {
       </transition>
       <transition name="fade">
         <div class="listColor" v-show="showListColor" id="listColor" @mouseleave="mouseLeaveColor">
-          <button v-on:click="changeColor(0)" style="background: #2d2e30" class="buttonLabelColor"/>
+          <button v-on:click="changeColor(0)" style="background: #69626d" class="buttonLabelColor"/>
           <button v-on:click="changeColor(1)" style="background: #177e89" class="buttonLabelColor"/>
           <button v-on:click="changeColor(2)" style="background: #32021f" class="buttonLabelColor"/>
           <button v-on:click="changeColor(3)" style="background: #8b635c" class="buttonLabelColor"/>

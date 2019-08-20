@@ -6,7 +6,7 @@ Vue.component('newnoteform', {
       message: '',
       titre: '',
       showListColor: false,
-      color: '#2d2e30',
+      color: '#69626d',
     };
   },
   methods: {
@@ -48,7 +48,7 @@ Vue.component('newnoteform', {
         <input v-bind:style="{ backgroundColor: color }" class="colorForNewNote" type="button" v-on:click="listColor" @mouseover="listColor">
         <transition name="fade">
           <div class="listNewColor" v-show="showListColor" id="listColor" @mouseleave="mouseLeaveColor">
-            <button v-on:click="changeColor(0)" style="background: #2d2e30" class="buttonLabelColor"/>
+            <button v-on:click="changeColor(0)" style="background: #69626d" class="buttonLabelColor"/>
             <button v-on:click="changeColor(1)" style="background: #177e89" class="buttonLabelColor"/>
             <button v-on:click="changeColor(2)" style="background: #32021f" class="buttonLabelColor"/>
             <button v-on:click="changeColor(3)" style="background: #8b635c" class="buttonLabelColor"/>

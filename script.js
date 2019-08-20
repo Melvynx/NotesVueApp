@@ -34,7 +34,7 @@ const findColor = new Vue({
   el: '#find',
   data: {
     colorToFind: 'all',
-    options: [{ text: 'All', value: 'all' }, { text: 'Noir', value: '#2d2e30' }, { text: 'Cyan', value: '#177e89' }, { text: 'Sang', value: '#32021f' }, { text: 'Pastèle', value: '#8b635c' }, { text: 'Violet', value: '#49306b' }, { text: 'Orange', value: '#6b2000' }, { text: 'Bleu', value: '#15075f' }, { text: 'Rouge', value: '#5c0029' }],
+    options: [{ text: 'All', value: 'all' }, { text: 'Noir', value: '#69626d' }, { text: 'Cyan', value: '#177e89' }, { text: 'Sang', value: '#32021f' }, { text: 'Pastèle', value: '#8b635c' }, { text: 'Violet', value: '#49306b' }, { text: 'Orange', value: '#6b2000' }, { text: 'Bleu', value: '#15075f' }, { text: 'Rouge', value: '#5c0029' }],
   },
   mounted() {
     this.colorToFind = localStorage.colorToFind;
