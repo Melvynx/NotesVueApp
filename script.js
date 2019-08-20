@@ -6,7 +6,7 @@ const msgSendNote = function () {
   setTimeout(() => { infoAfterSend.seen = false; }, 2000);
 };
 const checkedTitle = function (title) {
-  if (title.length > 3 && title.length < 30) {
+  if (title.length >= 3 && title.length < 30) {
     return true;
   }
   infoAfterSend.infoAfterSendMsg = 'Merci de donner un titre de plus de 3 caractères et un maximume de 30.';
@@ -22,11 +22,13 @@ const checkedNote = function (note) {
   return false;
 };
 const findTheBiggestID = function () {
-  const biggestID = Math.max(...listNote.notes.map((item) => item.id)) + 1;
-  return biggestID;
+  const maxExistingId = Math.max(...listNote.notes.map((item) => item.id));
+  return Math.max(maxExistingId, 0) + 1;
 };
+
 // variable
 let infoAfterSendMsg;
+const notesLocalStorage = JSON.parse(localStorage.notes);
 // vue.js
 const listNote = new Vue({
   el: '#listNote',

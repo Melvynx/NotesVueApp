@@ -1,8 +1,10 @@
+const backgroundColors = ['#2d2e30', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000 ', '#15075f', '#5c0029'];
 Vue.component('note', {
   props: ['note'],
   data() {
     return {
-      showLabel: false,
+      color: backgroundColors[this.note.color], 
+      showColor: false,
       showDelete: false,
       showEditTitle: false,
       showEditNote: false,
@@ -13,45 +15,62 @@ Vue.component('note', {
         background: '#2d2e30',
         border: '1px solid #d1d1d9',
       },
-      showListLabel: false,
+      showListColor: false,
+      showValidationDelete: false,
     };
   },
 
   methods: {
-    mouseOver(event) {
+    mouseOver() {
       this.showDelete = true;
-      this.showLabel = true;
+      this.showColor = true;
     },
-    mouseLeave(event) {
+    mouseLeave() {
       this.showDelete = false;
-      this.showLabel = false;
+      this.showColor = false;
     },
-    deleteNote(event) {
+    deleteNote() {
+      this.showValidationDelete = true;
+    },
+    yesDeleteNote() {
       const { id } = this.note;
       const index = listNote.notes.findIndex((note) => note.id === id);
       if (index > -1) {
         listNote.notes.splice(index, 1);
       }
+      this.showValidationDelete = false;
       return true;
     },
-    listLabel() {
-      this.showListLabel = !this.showListLabel;
+    listColor() {
+      this.showListColor = !this.showListColor;
     },
-    editTitle(event) {
+    noDeleteNote() {
+      this.showValidationDelete = false;
+    },
+    changeColor(colorIndex) {
+      this.color = backgroundColors[colorIndex];
+      this.showListColor = false;
+      this.note.color = this.color;
+      listNote.persist();
+    },
+    mouseLeaveColor() {
+      this.showListColor = false;
+    },
+    editTitle() {
       this.showEditTitle = true;
       this.$nextTick(() => this.$refs.refEditTitle.focus());
     },
     stopEditTitle() {
       this.showEditTitle = false;
     },
-    editNote(event) {
+    editNote() {
       this.showEditNote = true;
       this.$nextTick(() => this.$refs.refEditNote.focus());
     },
     stopEditNote() {
       this.showEditNote = false;
     },
-    changeRow(event) {
+    changeRow() {
       const messageSplit = this.note.note.split('\n');
       const messageSplitLength = messageSplit.length;
       if (messageSplitLength > 2) {
@@ -68,8 +87,8 @@ Vue.component('note', {
       }
     },
   },
-  template: `
-  <div class="note" @mouseover="mouseOver" @mouseleave="mouseLeave">
+  template: ` 
+  <div v-bind:style="{ backgroundColor: color || this.note.color }" class="note" @mouseover="mouseOver" @mouseleave="mouseLeave">
     <h1 
       v-show="!showEditTitle"
       v-on:click="editTitle">
@@ -91,19 +110,27 @@ Vue.component('note', {
     <button v-bind:title="infoDeleteTitle" class="buttonDelete" v-show="showDelete" v-on:click="deleteNote">
       <img src="trash.svg" class="svgTrash" />
     </button>
-    <div id="changeLabelBlock" class="changeLabelBlock">
+    <div class="blockOfValidationDeleteNote" v-show="showValidationDelete">
+      <div class="validationOfDelete">
+        <h3 class="questionValidationDelete">Voulez vous vraiment supprimer cette note ? </h3>
+        <p class="infoValidationDelete">Le titre de votre note est : <span class="titleValidationDelete">{{ note.titre }}</span>.</p>
+        <button v-on:click="yesDeleteNote" class="buttonYes">OUI</button>
+        <button v-on:click="noDeleteNote" class="buttonNo">NON</button>
+      </div>
+    </div>
+    <div id="changeColorBlock" class="changeColorBlock">
       <button 
-        v-bind:style="styleButton" v-bind:title="infoLabelTitle" class="buttonLabel" v-show="showLabel" v-on:click="listLabel">
+        @mouseover="listColor" v-bind:style="{ backgroundColor: color || this.note.color }" v-bind:title="infoLabelTitle" class="buttonColor" v-show="showColor" v-on:click="listColor">
       </button>
-      <div class="listLabel" v-show="showListLabel" id="listLabel">
-        <button style="background: #2d2e30; border-color: #93969c" class="buttonLabelColor"/>
-        <button style="background: #21355d; border-color: #64618e" class="buttonLabelColor"/>
-        <button style="background: #5a2754; border-color: #8f4bb0" class="buttonLabelColor"/>
-        <button style="background: #336c72; border-color: #6e7c88" class="buttonLabelColor"/>
-        <button style="background: #6e2525; border-color: #86474e" class="buttonLabelColor"/>
-        <button style="background: #5b4429; border-color: #7b6556" class="buttonLabelColor"/>
-        <button style="background: #395741; border-color: #404c5b" class="buttonLabelColor"/>
-        <button style="background: #21355d; border-color: #64618e" class="buttonLabelColor"/>
+      <div class="listColor" v-show="showListColor" id="listColor" @mouseleave="mouseLeaveColor">
+        <button v-on:click="changeColor(0)" style="background: #2d2e30" class="buttonLabelColor"/>
+        <button v-on:click="changeColor(1)" style="background: #177e89" class="buttonLabelColor"/>
+        <button v-on:click="changeColor(2)" style="background: #32021f" class="buttonLabelColor"/>
+        <button v-on:click="changeColor(3)" style="background: #8b635c" class="buttonLabelColor"/>
+        <button v-on:click="changeColor(4)" style="background: #49306b" class="buttonLabelColor"/>
+        <button v-on:click="changeColor(5)" style="background: #6b2000" class="buttonLabelColor"/>
+        <button v-on:click="changeColor(6)" style="background: #15075f" class="buttonLabelColor"/>
+        <button v-on:click="changeColor(7)" style="background: #5c0029" class="buttonLabelColor"/>
       </div>
     </div>
   </div>
