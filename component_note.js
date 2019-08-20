@@ -1,4 +1,4 @@
-const backgroundColors = ['#2d2e30', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000 ', '#15075f', '#5c0029'];
+const backgroundColors = ['#2d2e30', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'];
 Vue.component('note', {
   props: ['note'],
   data() {

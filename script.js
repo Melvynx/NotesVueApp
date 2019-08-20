@@ -30,6 +30,22 @@ const findTheBiggestID = function () {
 let infoAfterSendMsg;
 const notesLocalStorage = JSON.parse(localStorage.notes);
 // vue.js
+const findColor = new Vue({
+  el: '#find',
+  data: {
+    colorToFind: 'all',
+    options: [{ text: 'All', value: 'all' }, { text: 'Noir', value: '#2d2e30' }, { text: 'Cyan', value: '#177e89' }, { text: 'Sang', value: '#32021f' }, { text: 'Pastèle', value: '#8b635c' }, { text: 'Violet', value: '#49306b' }, { text: 'Orange', value: '#6b2000' }, { text: 'Bleu', value: '#15075f' }, { text: 'Rouge', value: '#5c0029' }],
+  },
+  mounted() {
+    this.colorToFind = localStorage.colorToFind;
+  },
+  watch: {
+    colorToFind(colorToFind) {
+      localStorage.colorToFind = colorToFind;
+    }
+  }
+});
+
 const listNote = new Vue({
   el: '#listNote',
   data: {
@@ -38,8 +54,6 @@ const listNote = new Vue({
   mounted() {
     if (localStorage.notes) {
       this.notes = JSON.parse(localStorage.notes);
-    } else {
-      this.notes = [];
     }
   },
   watch: {
@@ -50,6 +64,12 @@ const listNote = new Vue({
   methods: {
     persist() {
       localStorage.notes = JSON.stringify(this.notes);
+    },
+    notesFiltered() {
+      if (findColor.colorToFind === 'all') {
+        return this.notes;
+      }
+      return this.notes.filter((x) => x.color === findColor.colorToFind);
     },
   },
 });

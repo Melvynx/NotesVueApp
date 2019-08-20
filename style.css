@@ -21,7 +21,7 @@ body{
   font-size: 16px;
   width: 485px;
   background-color: #2d2e30;
-  border: 1px solid #2d2e30;
+  border:none;
   margin-left: 8px;
   color: #d1d1d9;
 }
@@ -29,7 +29,7 @@ body{
   color: #93969c;
 }
 .titleCreate{
-  border: 2px solid #2d2e30;
+  border: 1px solid #2d2e30;
   background-color: #2d2e30;
   font-size: 18px;
   margin-bottom: 5px;
@@ -37,7 +37,7 @@ body{
   margin-left: 8px;
   color: #d1d1d9;
   transition-property: border-bottom;
-  transition-duration: 2s;
+  transition-duration: 1s;
   display: block;
 }
 .titleCreate:hover{
@@ -48,7 +48,7 @@ body{
   background-color: #2d2e30;
   color: #d1d1d9;
   font-size: 16px;
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
   position: relative;
   left: 430px;
   border-radius: 10px;
@@ -110,7 +110,7 @@ h1{
   font-size: 16px;
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 1s;
+  transition: opacity .4s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -202,7 +202,7 @@ h1{
   border-radius: 5px;
   background-color: #2d2e30;
   right: 90px;
-  bottom: 10px;
+  bottom: 5px;
 }
 .buttonColor:hover{
   box-shadow: 2px 2px 12px 1px black; 
@@ -277,17 +277,52 @@ h1{
   font-weight: bold;
 }
 .deleteButtonTransition-enter-active, .deleteButtonTransition-leave-active {
-  transition: opacity .5s;
+  transition: opacity .2s;
 }
 .deleteButtonTransition-enter, .deleteButtonTransition-leave-to {
   opacity: 0;
 }
-.notes-note{
-}
-.notes-note-active, .notes-note-active {
-  transition: all 1s;
+.notes-enter-active, .notes-leave-active {
+  transition: all .5s;
 }
 .notes-enter, .notes-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
+}
+.findAColor{
+  width: 200PX;
+  position: fixed;
+  top: 0;
+  left: 0;  
+  z-index: 50;
+  
+}
+.findColor{
+  border: 1px solid #5f6368 ;
+  background-color: #2d2e30 ;
+  display: block;
+  position: relative;
+  right: 0px;
+  color: #d1d1d9;
+  font-size: 14px;
+  margin: 3px;
+  border: 1px solid #7a7a74;
+  width: 105px;
+  padding: 5px;
+  border-radius: 12px;
+}
+.buttonFindColor{
+  background-color: #2d2e30;
+  border: 1px solid #5f6368;
+  color: #d1d1d9;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 8px;
+  position: relative;
+  top: 0px;
+  margin: 3px;
+}
+.noir{
+  background-color: black;
+  color: #d1d1d9;
 }

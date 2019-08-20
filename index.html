@@ -6,7 +6,14 @@
     <link href="style.css" rel="stylesheet">
   </head>
   <body>
-    <div id="createNote" class="createNewNote">
+    <div id="find" class="findAColor">
+      <select name="color" class="findColor" v-model="colorToFind">
+        <option v-for="option in options" v-bind:value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+    </div>
+    <div id="createNote">
       <newnoteform></newnoteform>
     </div>
     <div id="infoAfterSend" class="InfoWhenYouSend" v-bind:style="styleObject">
@@ -14,11 +21,10 @@
         <h2 v-if="seen">{{ infoAfterSendMsg }}</h2>
       </transition>
     </div>
-    <div id="listNote" class="listOfNote">
-      <!--<transition-group name="notes" tag="div">-->
-        <note v-for="note in notes" v-bind:note="note" v-bind:key="note" class="notes-note" v-on:edit-note-storage="persist"/>
-      <!--</transition-group>-->
-      
+    <div id="listNote" >
+      <transition-group mode="out-in" name="notes" tag="div" class="listOfNote">
+        <note v-for="note in notesFiltered()" v-bind:note="note" v-bind:key="note.id" class="notes-note" v-on:edit-note-storage="persist"/>
+      </transition-group>
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="component_note.js"></script>
@@ -26,3 +32,4 @@
     <script src="script.js"></script>
   </body>
 </html> 
+
