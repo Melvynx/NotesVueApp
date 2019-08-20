@@ -13,6 +13,9 @@ const checkedTitle = function (title) {
   msgSendNote();
   return false;
 };
+const filtreTabTitle = function (array, string) {
+  return array.filter((el) => el.titre.toLowerCase().indexOf(string.toLowerCase()) !== -1);
+};
 const checkedNote = function (note) {
   if (note.length > 3 && note.length < 2000) {
     return true;
@@ -29,12 +32,15 @@ const findTheBiggestID = function () {
 // variable
 let infoAfterSendMsg;
 const notesLocalStorage = JSON.parse(localStorage.notes);
+let modeFind = false;
 // vue.js
 const findColor = new Vue({
   el: '#find',
   data: {
     colorToFind: 'all',
     options: [{ text: 'All', value: 'all' }, { text: 'Gris', value: '#69626d' }, { text: 'Cyan', value: '#177e89' }, { text: 'Sang', value: '#32021f' }, { text: 'Pastèle', value: '#8b635c' }, { text: 'Violet', value: '#49306b' }, { text: 'Orange', value: '#6b2000' }, { text: 'Bleu', value: '#15075f' }, { text: 'Rouge', value: '#5c0029' }],
+    rightChange: '200px',
+    textToFind: '',
   },
   mounted() {
     this.colorToFind = localStorage.colorToFind;
@@ -42,8 +48,25 @@ const findColor = new Vue({
   watch: {
     colorToFind(colorToFind) {
       localStorage.colorToFind = colorToFind;
+    },
+  },
+  methods: {
+    displayFindAText() {
+      this.rightChange = '0px';
+      this.$nextTick(() => this.$refs.refFindText.focus())
+    },
+    hideFindAText() {
+      this.rightChange = '200px';
+    },
+    sendFindInNote() {
+      const findResult = filtreTabTitle(listNote.notes, this.textToFind);
+      console.log(findResult);
+      return findResult;
+    },
+    stopFind() {
+      console.log('ok');
     }
-  }
+  },
 });
 
 const listNote = new Vue({
@@ -67,7 +90,12 @@ const listNote = new Vue({
       localStorage.notes = JSON.stringify(this.notes);
     },
     notesFiltered() {
+      const findResult = filtreTabTitle(this.notes, findColor.textToFind);
       const filterdArray = this.notes.filter((x) => x.color === findColor.colorToFind);
+      if (findColor.textToFind.length > 0) {
+        findColor.colorToFind = 'all';
+        return findResult;
+      }
       if (findColor.colorToFind === 'all') {
         this.nothingNoteFind = false;
         return this.notes;

@@ -12,6 +12,9 @@
           {{ option.text }}
         </option>
       </select>
+        <div class="findInANote" v-bind:style="{ right: rightChange }" @focusout="hideFindAText">
+          <input ref="refFindText" type="text" class="findAText" v-on:keyup.enter="sendFindInNote" v-model="textToFind" ><img class="svgLoupe" src="loupe.svg" v-on:click="sendFindInNote" @mouseover="displayFindAText"/>
+        </div>
     </div>
     <div id="createNote">
       <newnoteform></newnoteform>

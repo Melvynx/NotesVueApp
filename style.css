@@ -173,6 +173,32 @@ h1{
 .svgNothing{
   width: 150px;
 }
+.findInANote{  
+  border: 1px solid #8d99ae;
+  background-color: #69626d;
+  height: 32px;
+  margin-top: 15px;
+  position: relative;
+  right: 200px;
+  border-radius: 2px;
+  transition: right linear .3s;
+}
+.findAText{
+  height: 30px;
+  width: 200px;
+  margin-top: -20px;
+  position: relative;
+  top: -15px; 
+  border: 1px solid #8d99ae;
+  background-color: #69626d;
+  border-right: none;
+  color: #edf2f4;
+  font-size: 16px;
+}
+.svgLoupe{
+  width: 30px;
+  position: relative;
+}
 /*Button for change label*/
 .buttonColor{
   position: absolute;
@@ -288,15 +314,26 @@ h1{
 .deleteButtonTransition-enter, .deleteButtonTransition-leave-to {
   opacity: 0;
 }
-.notes-enter-active, .notes-leave-active {
-  transition: all .5s;
+.notes-enter-active {
+  transition: all 1s;
+}
+..notes-leave-active {
+  transition: all .00001s;
+  transition-delay: 3s;
 }
 .notes-enter, .notes-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
   transform: translateY(30px);
 }
+.findANoteTransition-enter-active, .findANoteTransition-leave-active {
+  transition: all .5s;
+}
+.findANoteTransition-enter, .findANoteTransition-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 .findAColor{
-  width: 200PX;
   position: fixed;
   top: 0;
   left: 0;  
