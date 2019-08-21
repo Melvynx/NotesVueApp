@@ -3,7 +3,7 @@ Vue.component('note', {
   props: ['note'],
   data() {
     return {
-      color: backgroundColors[this.note.color],
+      color: backgroundColors[this.note.color], 
       showColor: false,
       showDelete: false,
       showEditTitle: false,
