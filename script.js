@@ -30,7 +30,6 @@ const findTheBiggestID = function () {
 };
 // variable
 let infoAfterSendMsg;
-let modeFind = false;
 // vue.js
 const findColor = new Vue({
   el: '#find',
@@ -48,12 +47,13 @@ const findColor = new Vue({
   watch: {
     colorToFind(colorToFind) {
       localStorage.colorToFind = colorToFind;
+      this.textToFind = '';
     },
   },
   methods: {
     displayFindAText() {
       this.rightChange = '0px';
-      this.$nextTick(() => this.$refs.refFindText.focus())
+      this.$nextTick(() => this.$refs.refFindText.focus());
     },
     hideFindAText() {
       this.rightChange = '200px';
@@ -63,8 +63,7 @@ const findColor = new Vue({
       return findResult;
     },
     stopFind() {
-      console.log('ok');
-    }
+    },
   },
 });
 
@@ -102,7 +101,7 @@ const listNote = new Vue({
       if (filterdArray.length === 0) {
         this.nothingNoteFind = true;
         return filterdArray;
-      }
+      };
       this.nothingNoteFind = false;
       return filterdArray;
     },

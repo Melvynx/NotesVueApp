@@ -7,7 +7,7 @@ Vue.component('note', {
   props: ['note'],
   data() {
     return {
-      color: backgroundColors[this.note.color], 
+      color: backgroundColors[this.note.color],
       showColor: false,
       showDelete: false,
       showEditTitle: false,
@@ -15,12 +15,15 @@ Vue.component('note', {
       rowChange: 3,
       infoDeleteTitle: 'Un click pour supprimer une note.',
       infoLabelTitle: 'Un click pour modifier le Label (couleur)',
+      infoDateCreateNote: this.note.date,
       styleButton: {
         background: '#69626d',
         border: '1px solid #d1d1d9',
       },
       showListColor: false,
       showValidationDelete: false,
+      editNoteInfo: 'Un click permet de modifier la note.',
+      editTitleInfo: 'Un click permet de modifier le titre de la note.',
       backgroundColors: ['#69626d', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'],
     };
   },
@@ -93,14 +96,15 @@ Vue.component('note', {
     },
   },
   template: `
-  <div v-bind:style="{ backgroundColor: color || this.note.color }" class="note" @mouseover="mouseOver" @mouseleave="mouseLeave">
+  <div v-bind:style="{ backgroundColor: color || this.note.color }" class="note" @mouseover="mouseOver" @mouseleave="mouseLeave" v-bind:title="infoDateCreateNote">
     <h1 
+      v-bind:title="editTitleInfo"
       v-show="!showEditTitle"
       v-on:click="editTitle">
       {{ note.titre }}
     </h1>
     <input v-on:keyup.enter="stopEditTitle" v-on:keyup="countNombreCaractres" v-show="showEditTitle" ref="refEditTitle" class="changeNoteInput" type="text" v-model="note.titre" @focusout="stopEditTitle" v-on:input="$emit('edit-note-storage')">
-    <p class="noteContenue" v-show="!showEditNote" v-on:click="editNote">{{ note.note }}</p>
+    <p v-bind:title="editNoteInfo" class="noteContenue" v-show="!showEditNote" v-on:click="editNote">{{ note.note }}</p>
     <textarea 
       v-show="showEditNote"
       ref="refEditNote"

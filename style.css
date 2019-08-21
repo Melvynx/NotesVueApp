@@ -83,7 +83,7 @@ input:placeholder-shown{
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  height: 500px;
+  height: 300px;
   flex-wrap: wrap;
   padding-left: 40px;
   padding-right: 30px;
@@ -102,7 +102,7 @@ input:placeholder-shown{
 }
 h1{
   font-size: 18px; 
-  margin-top: -16px;
+  margin-top: -20px;
   margin-bottom: -5px;
   font-weight: bold;
 }
@@ -163,10 +163,12 @@ h1{
   background-color: #93969c;
   border: 1px solid #93969c;
 }
-.svgTrash{
+.svgTrash {
   width: 20px;
   margin-bottom: -7px;
+  filter:grayscale(0%);
 }
+svg:hover path { fill: red; };
 .nothingNoteFind{
   text-align: center;
 }
@@ -181,7 +183,7 @@ h1{
   position: relative;
   right: 200px;
   border-radius: 2px;
-  transition: right linear .3s;
+  transition: right ease-out .2s;
 }
 .findAText{
   height: 30px;
@@ -263,27 +265,28 @@ h1{
 }
 .validationOfDelete{
   margin: auto;
-  background-color: #69626d;
-  border: 1px solid #5f5f5f;
+  background-color: #2b2d42;
+  border: 1px solid #8d99ae;
   padding: 10px;
   border-radius: 10px;
-  
+  box-shadow: 1px 1px 5px 3px black;  
 
 }
 .buttonYes, .buttonNo{
   border: 1px solid #5f5f5f;
-  background-color: #69626d;
+  background-color: #2b2d42;
   color: #edf2f4;
   padding: 5px 10px 5px 10px;
   border-radius: 8px;
   font-size: 14px;
-  transition-property: background-color;
+  transition-property: background-color, color;
   transition-duration: 1s;
   margin-top: 10px;
   margin-left: 15px;
 }
 .buttonYes:hover, .buttonNo:hover{
-  background-color: #5f5f5f;
+  background-color: #edf2f4;
+  color: #2b2d42;
 }
 .buttonNo{
   margin-left: 270px;
@@ -293,6 +296,9 @@ h1{
 }
 .infoValidationDelete{
   margin-bottom: -2px;
+  background-color: rgba(255, 255, 255, 0.199); 
+  border-radius: 3px;
+  padding: 3px;
 }
 .blockOfValidationDeleteNote{
   display: grid;  
