@@ -114,6 +114,11 @@ const createNote = new Vue({
     message: '',
     titre: '',
   },
+  methods: {
+    createNew: function(newNote) {
+      listNote.notes.push(newNote);
+    }
+  }
 });
 const infoAfterSend = new Vue({
   el: '#infoAfterSend',

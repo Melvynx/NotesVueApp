@@ -17,7 +17,7 @@
         </div>
     </div>
     <div id="createNote">
-      <newnoteform></newnoteform>
+      <newnoteform v-on:create-new="createNew" />
     </div>
     <div id="infoAfterSend" class="InfoWhenYouSend" v-bind:style="styleObject">
       <transition name="fade">

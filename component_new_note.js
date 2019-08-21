@@ -1,5 +1,5 @@
 Vue.component('newnoteform', {
-  props: ['note', 'listNote.notes'],
+  props: ['note'],
   data() {
     return {
       rows: 3,
@@ -31,7 +31,8 @@ Vue.component('newnoteform', {
     },
     clickSendNote() {
       if (checkedTitle(this.titre) && checkedNote(this.message)) {
-        listNote.notes.push({id: String(findTheBiggestID()), titre: this.titre, note: this.message, color: this.color });
+        const newNote = {id: String(findTheBiggestID()), titre: this.titre, note: this.message, color: this.color };
+        this.$emit('create-new', newNote);
         this.message = '';
         this.titre = '';
         this.rows = 3;
