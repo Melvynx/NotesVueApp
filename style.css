@@ -1,13 +1,13 @@
 body{
-  background: #202124;
-  color: #d1d1d9;
+  background: #2b2d42;
+  color: #edf2f4;
   font-family: 'Arial';
 }
 /* <newnoteform> */
 .createNewNote{
   margin: auto;
-  border: 1px solid #5f6368;
-  background-color: #2d2e30;;
+  border: 1px solid #8d99ae;
+  background-color: #69626d;;
   border-radius: 5px;
   width: 500px;
   padding: 8px;
@@ -20,35 +20,35 @@ body{
   font-family: Arial;
   font-size: 16px;
   width: 485px;
-  background-color: #2d2e30;
-  border: 1px solid #2d2e30;
+  background-color: #69626d;
+  border:none;
   margin-left: 8px;
-  color: #d1d1d9;
+  color: #edf2f4;
 }
 .createNoteTextArea:placeholder-shown{
   color: #93969c;
 }
 .titleCreate{
-  border: 2px solid #2d2e30;
-  background-color: #2d2e30;
+  border: 1px solid #69626d;
+  background-color: #69626d;
   font-size: 18px;
   margin-bottom: 5px;
   width: 485px;
   margin-left: 8px;
-  color: #d1d1d9;
+  color: #edf2f4;
   transition-property: border-bottom;
-  transition-duration: 2s;
+  transition-duration: 1s;
   display: block;
 }
 .titleCreate:hover{
-  border-bottom: 1px solid #d1d1d9;
+  border-bottom: 1px solid #edf2f4;
 }
 .createNoteButton{
-  border: 2px solid #2d2e30;
-  background-color: #2d2e30;
-  color: #d1d1d9;
+  border: 2px solid #69626d;
+  background-color: #69626d;
+  color: #edf2f4;
   font-size: 16px;
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
   position: relative;
   left: 430px;
   border-radius: 10px;
@@ -59,7 +59,7 @@ body{
   background-color: #444549;
 }
 input:placeholder-shown{
-  color: #93969c;  
+  color: #adb0bb;  
 }
 /* <informationWhenYouSend */
 .InfoWhenYouSend{
@@ -67,7 +67,7 @@ input:placeholder-shown{
   top: -600px;;
   left: 35%;
   background-color: rgba(45,46,48,0.2);
-  border: 1px solid #5f6368;
+  border: 1px solid #8d99ae;
   padding: 10px;
   border-radius: 10px;
   max-width: 300px;
@@ -83,15 +83,15 @@ input:placeholder-shown{
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  height: 500px;
+  height: 300px;
   flex-wrap: wrap;
   padding-left: 40px;
   padding-right: 30px;
   
 }
 .note {
-  border: 1px solid #5f6368;
-  background-color: #2d2e30;
+  border: 1px solid #8d99ae;
+  background-color: #69626d;
   width: 250px;
   border-radius: 5px;
   margin: 10px;
@@ -102,7 +102,7 @@ input:placeholder-shown{
 }
 h1{
   font-size: 18px; 
-  margin-top: -16px;
+  margin-top: -20px;
   margin-bottom: -5px;
   font-weight: bold;
 }
@@ -110,7 +110,7 @@ h1{
   font-size: 16px;
 }
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .6s;
+  transition: opacity .4s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -135,7 +135,7 @@ h1{
   font-size: 16px;
   background-color: inherit;
   border: none;
-  color: #d1d1d9;
+  color: #edf2f4;
   margin-top: 15px;
 }
 .changeNoteInput{
@@ -144,8 +144,8 @@ h1{
   font-size: 18px; 
   font-weight: bold;
   width: 190px;
-  color: #d1d1d9;
-  border-bottom: 1px solid #d1d1d9;
+  color: #edf2f4;
+  border-bottom: 1px solid #edf2f4;
   margin-top: 2px;
 }
 /*Button for delete note*/
@@ -153,8 +153,8 @@ h1{
   position: absolute;
   bottom: 6px;
   left: 14px;
-  background-color: #d1d1d9;
-  border: 1px solid #d1d1d9;
+  background-color: #edf2f4;
+  border: 1px solid #edf2f4;
   border-radius: 10px;
   transition-property: background-color, border;
   transition-duration: 2s;
@@ -163,9 +163,43 @@ h1{
   background-color: #93969c;
   border: 1px solid #93969c;
 }
-.svgTrash{
+.svgTrash {
   width: 20px;
   margin-bottom: -7px;
+  filter:grayscale(0%);
+}
+svg:hover path { fill: red; };
+.nothingNoteFind{
+  text-align: center;
+}
+.svgNothing{
+  width: 150px;
+}
+.findInANote{  
+  border: 1px solid #8d99ae;
+  background-color: #69626d;
+  height: 32px;
+  margin-top: 15px;
+  position: relative;
+  right: 200px;
+  border-radius: 2px;
+  transition: right ease-out .2s;
+}
+.findAText{
+  height: 30px;
+  width: 200px;
+  margin-top: -20px;
+  position: relative;
+  top: -15px; 
+  border: 1px solid #8d99ae;
+  background-color: #69626d;
+  border-right: none;
+  color: #edf2f4;
+  font-size: 16px;
+}
+.svgLoupe{
+  width: 30px;
+  position: relative;
 }
 /*Button for change label*/
 .buttonColor{
@@ -176,9 +210,13 @@ h1{
   width: 22px;
   border-radius: 20px;
   border: none;
-  box-shadow: 1px 1px 8px 0.3px white;
+  box-shadow: 0px 0px 8px 0.5px black;
+  border: 1px solid black;
   transition-property: box-shadow;
   transition-duration: 0.5s;
+}
+.buttonColor:hover{
+  box-shadow: 2px 2px 12px 1px black; 
 }
 .colorForNewNote{
   height: 22px;
@@ -196,9 +234,9 @@ h1{
   width: 210px;
   padding: 5px;
   border-radius: 5px;
-  background-color: #2d2e30;
-  right: 90px;
-  bottom: 10px;
+  background-color: #d1d3d650;
+  right: 74px;
+  bottom: 6px;
 }
 .buttonColor:hover{
   box-shadow: 2px 2px 12px 1px black; 
@@ -209,41 +247,46 @@ h1{
   flex-wrap: wrap;
   border: 1px solid #7a7a74;
   width: 105px;
-  padding: 5px;
+  padding: 2px 3px 2px 3px;
   border-radius: 12px;
-  background-color: #2d2e30;
-  bottom: 0px;
-  right: 10px;
+  background-color: #d1d3d666;
+  bottom: 2px;
+  right: 7px;
 }
 .buttonLabelColor{
   height: 22px;
   width: 22px;
   border-radius: 20px;
-  margin: 2px;
+  margin: 1px;
   border: 1px solid #7a7a74;
+}
+.buttonLabelColor:hover{
+  border: 2px solid black;
 }
 .validationOfDelete{
   margin: auto;
-  background-color: #2d2e30;
-  border: 1px solid #5f5f5f;
+  background-color: #2b2d42;
+  border: 1px solid #8d99ae;
   padding: 10px;
   border-radius: 10px;
+  box-shadow: 1px 1px 5px 3px black;  
 
 }
 .buttonYes, .buttonNo{
   border: 1px solid #5f5f5f;
-  background-color: #2d2e30;
-  color: #d1d1d9;
-  padding: 10px;
+  background-color: #2b2d42;
+  color: #edf2f4;
+  padding: 5px 10px 5px 10px;
   border-radius: 8px;
   font-size: 14px;
-  transition-property: background-color;
+  transition-property: background-color, color;
   transition-duration: 1s;
   margin-top: 10px;
   margin-left: 15px;
 }
 .buttonYes:hover, .buttonNo:hover{
-  background-color: #5f5f5f;
+  background-color: #edf2f4;
+  color: #2b2d42;
 }
 .buttonNo{
   margin-left: 270px;
@@ -252,7 +295,10 @@ h1{
   margin-top: 0px;
 }
 .infoValidationDelete{
-  border-bottom: -20px;
+  margin-bottom: -2px;
+  background-color: rgba(255, 255, 255, 0.199); 
+  border-radius: 3px;
+  padding: 3px;
 }
 .blockOfValidationDeleteNote{
   display: grid;  
@@ -267,4 +313,64 @@ h1{
 .titleValidationDelete{
   color: #b99cb4;
   font-weight: bold;
+}
+.deleteButtonTransition-enter-active, .deleteButtonTransition-leave-active {
+  transition: opacity .2s;
+}
+.deleteButtonTransition-enter, .deleteButtonTransition-leave-to {
+  opacity: 0;
+}
+.notes-enter-active {
+  transition: all 1s;
+  transition-delay: .2s
+}
+.notes-leave-active {
+  transition: all .00001s;
+}
+.notes-enter, .notes-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.findANoteTransition-enter-active, .findANoteTransition-leave-active {
+  transition: all .5s;
+}
+.findANoteTransition-enter, .findANoteTransition-leave-to /* .list-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.findAColor{
+  position: fixed;
+  top: 0;
+  left: 0;  
+  z-index: 50;
+}
+.findColor{
+  border: 1px solid #8d99ae ;
+  background-color: #69626d ;
+  display: block;
+  position: relative;
+  right: 0px;
+  color: #edf2f4;
+  font-size: 14px;
+  margin: 3px;
+  border: 1px solid #7a7a74;
+  width: 105px;
+  padding: 5px;
+  border-radius: 12px;
+}
+.buttonFindColor{
+  background-color: #69626d;
+  border: 1px solid #8d99ae;
+  color: #edf2f4;
+  border-radius: 5px;
+  font-size: 14px;
+  padding: 8px;
+  position: relative;
+  top: 0px;
+  margin: 3px;
+}
+.noir{
+  background-color: black;
+  color: #edf2f4;
 }

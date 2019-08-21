@@ -6,16 +6,33 @@
     <link href="style.css" rel="stylesheet">
   </head>
   <body>
-    <div id="createNote" class="createNewNote">
-      <newnoteform></newnoteform>
+    <div id="find" class="findAColor">
+      <select name="color" class="findColor" v-model="colorToFind">
+        <option v-for="option in options" v-bind:value="option.value">
+          {{ option.text }}
+        </option>
+      </select>
+        <div class="findInANote" v-bind:style="{ right: rightChange }" @focusout="hideFindAText">
+          <input ref="refFindText" type="text" class="findAText" v-on:keyup.enter="sendFindInNote" v-model="textToFind" ><img class="svgLoupe" src="loupe.svg" v-on:click="sendFindInNote" @mouseover="displayFindAText"/>
+        </div>
+    </div>
+    <div id="createNote">
+      <newnoteform v-on:create-new="createNew" />
     </div>
     <div id="infoAfterSend" class="InfoWhenYouSend" v-bind:style="styleObject">
       <transition name="fade">
         <h2 v-if="seen">{{ infoAfterSendMsg }}</h2>
       </transition>
     </div>
-    <div id="listNote" class="listOfNote">
-      <note v-for="note in notes" v-bind:note="note" v-on:edit-note-storage="persist"/>
+    <div id="listNote" >
+      <div class="nothingNoteFind" v-show="nothingNoteFind">
+          <img class="svgNothing" src="nothing.svg"/>
+          <p>Vous n'avez pas encore effectuer de note avec cette couleur...</p>
+          <p>Crée en une !</p>
+      </div>
+      <transition-group mode="out-in" name="notes" tag="div" class="listOfNote">
+        <note v-for="note in notesFiltered()" v-bind:note="note" v-bind:key="note.id" class="notes-note" v-on:edit-note-storage="persist"/>
+      </transition-group>
     </div>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="component_note.js"></script>
@@ -23,3 +40,4 @@
     <script src="script.js"></script>
   </body>
 </html> 
+
