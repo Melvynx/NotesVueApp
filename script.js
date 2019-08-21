@@ -30,7 +30,6 @@ const findTheBiggestID = function () {
 };
 // variable
 let infoAfterSendMsg;
-const notesLocalStorage = JSON.parse(localStorage.notes);
 let modeFind = false;
 // vue.js
 const findColor = new Vue({
@@ -42,7 +41,9 @@ const findColor = new Vue({
     textToFind: '',
   },
   mounted() {
-    this.colorToFind = localStorage.colorToFind;
+    if (localStorage.colorToFind) {
+      this.colorToFind = localStorage.colorToFind;
+    }
   },
   watch: {
     colorToFind(colorToFind) {
