@@ -28,7 +28,6 @@ const findTheBiggestID = function () {
   const maxExistingId = Math.max(...listNote.notes.map((item) => item.id));
   return Math.max(maxExistingId, 0) + 1;
 };
-
 // variable
 let infoAfterSendMsg;
 const notesLocalStorage = JSON.parse(localStorage.notes);
@@ -60,7 +59,6 @@ const findColor = new Vue({
     },
     sendFindInNote() {
       const findResult = filtreTabTitle(listNote.notes, this.textToFind);
-      console.log(findResult);
       return findResult;
     },
     stopFind() {

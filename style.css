@@ -59,7 +59,7 @@ body{
   background-color: #444549;
 }
 input:placeholder-shown{
-  color: #93969c;  
+  color: #adb0bb;  
 }
 /* <informationWhenYouSend */
 .InfoWhenYouSend{
@@ -244,12 +244,12 @@ h1{
   display: flex;
   flex-wrap: wrap;
   border: 1px solid #7a7a74;
-  width: 210px;
+  width: 105px;
   padding: 2px 3px 2px 3px;
   border-radius: 12px;
   background-color: #d1d3d666;
   bottom: 2px;
-  right: -3px;
+  right: 7px;
 }
 .buttonLabelColor{
   height: 22px;
@@ -316,10 +316,10 @@ h1{
 }
 .notes-enter-active {
   transition: all 1s;
+  transition-delay: .2s
 }
-..notes-leave-active {
+.notes-leave-active {
   transition: all .00001s;
-  transition-delay: 3s;
 }
 .notes-enter, .notes-leave-to /* .list-leave-active below version 2.1.8 */ {
   opacity: 0;
@@ -338,7 +338,6 @@ h1{
   top: 0;
   left: 0;  
   z-index: 50;
-  
 }
 .findColor{
   border: 1px solid #8d99ae ;

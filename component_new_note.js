@@ -7,6 +7,7 @@ Vue.component('newnoteform', {
       titre: '',
       showListColor: false,
       color: '#69626d',
+      backgroundColors: ['#69626d', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'],
     };
   },
   methods: {
@@ -48,14 +49,7 @@ Vue.component('newnoteform', {
         <input v-bind:style="{ backgroundColor: color }" class="colorForNewNote" type="button" v-on:click="listColor" @mouseover="listColor">
         <transition name="fade">
           <div class="listNewColor" v-show="showListColor" id="listColor" @mouseleave="mouseLeaveColor">
-            <button v-on:click="changeColor(0)" style="background: #69626d" class="buttonLabelColor"/>
-            <button v-on:click="changeColor(1)" style="background: #177e89" class="buttonLabelColor"/>
-            <button v-on:click="changeColor(2)" style="background: #32021f" class="buttonLabelColor"/>
-            <button v-on:click="changeColor(3)" style="background: #8b635c" class="buttonLabelColor"/>
-            <button v-on:click="changeColor(4)" style="background: #49306b" class="buttonLabelColor"/>
-            <button v-on:click="changeColor(5)" style="background: #6b2000" class="buttonLabelColor"/>
-            <button v-on:click="changeColor(6)" style="background: #15075f" class="buttonLabelColor"/>
-            <button v-on:click="changeColor(7)" style="background: #5c0029" class="buttonLabelColor"/>
+            <button v-for="(color, index) in backgroundColors" v-on:click="changeColor(index)" v-bind:style="{ backgroundColor: color }" class="buttonLabelColor"/>
           </div>
         </transition>
       </div>
