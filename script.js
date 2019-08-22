@@ -1,36 +1,3 @@
-// utile
-const msgSendNote = function () {
-  infoAfterSend.styleObject.top = '10%';
-  infoAfterSend.seen = true;
-  setTimeout(() => { infoAfterSend.styleObject.top = '-600px'; }, 2000);
-  setTimeout(() => { infoAfterSend.seen = false; }, 2000);
-};
-const checkedTitle = function (title) {
-  if (title.length >= 3 && title.length < 30) {
-    return true;
-  }
-  infoAfterSend.infoAfterSendMsg = 'Merci de donner un titre de plus de 3 caractères et un maximume de 30.';
-  msgSendNote();
-  return false;
-};
-const filtreTabTitle = function (array, text) {
-  return array.filter((el) => el.titre.toLowerCase().indexOf(text.toLowerCase()) !== -1);
-};
-const checkedNote = function (note) {
-  if (note.length > 3 && note.length < 2000) {
-    return true;
-  }
-  infoAfterSend.infoAfterSendMsg = "Merci d'effectuer une note de plus de 5 caractères. 2000 est la limites.";
-  msgSendNote();
-  return false;
-};
-const findTheBiggestID = function () {
-  const maxExistingId = Math.max(...listNote.notes.map((item) => item.id));
-  return Math.max(maxExistingId, 0) + 1;
-};
-// variable
-let infoAfterSendMsg;
-// vue.js
 const findColor = new Vue({
   el: '#find',
   data: {
@@ -71,7 +38,6 @@ const findColor = new Vue({
       listNote.persist();
       if (this.shouldSortByColor) {
         this.shouldByColorInfo = 'Trier Date';
-      // eslint-disable-next-line no-empty
       } else {
         this.shouldByColorInfo = 'Trier Couleur';
       }
@@ -84,14 +50,12 @@ const findColor = new Vue({
       this.modeArchiver = !this.modeArchiver;
       if (this.modeArchiver) {
         this.archiverModeInfo = 'Note';
-      // eslint-disable-next-line no-empty
       } else {
         this.archiverModeInfo = 'Note Archiver';
       }
     },
   },
 });
-
 const listNote = new Vue({
   el: '#listNote',
   data: {
@@ -112,38 +76,30 @@ const listNote = new Vue({
     persist() {
       localStorage.notes = JSON.stringify(this.notes);
     },
+    // eslint-disable-next-line consistent-return
     notesFiltered() {
-      const findResult = filtreTabTitle(this.notes, findColor.textToFind);
-      const filterdArray = this.notes.filter((note) => note.color === findColor.colorToFind);
-      if (findColor.textToFind.length > 0) {
-        findColor.colorToFind = 'all';
-        return findResult;
-      }
+      let arrayToFiltre;
       if (findColor.shouldSortByColor) {
-        if (findColor.colorToFind === 'all') {
-          return this.sortNoteByColor();
-        // eslint-disable-next-line no-else-return
-        } else {
-          this.nothingNoteFind = false;
-          return filterdArray;
-        }
+        arrayToFiltre = this.sortNoteByColor(this.notes);
+      } else {
+        arrayToFiltre = this.notes;
       }
-      if (findColor.colorToFind === 'all') {
-        this.nothingNoteFind = false;
-        return this.notes;
-      }
-      if (filterdArray.length === 0 || findResult.length === 0) {
+      const filterdArrayText = filtreTabTitle(arrayToFiltre, findColor.textToFind);
+      const filterdArrayColor = filtreColor(filterdArrayText, findColor.colorToFind);
+      if (filterdArrayColor.length === 0) {
         this.nothingNoteFind = true;
-        return filterdArray;
+      } else {
+        this.nothingNoteFind = false;
+        return filterdArrayColor;
       }
     },
-    sortNoteByColor() {
+    sortNoteByColor(array) {
       arrayByColor = [];
-      if (this.notes) {
+      if (array) {
         for (i = 0; i < backgroundColors.length; i++) {
-          for (e = 0; e < this.notes.length; e++) {
-            if (this.notes[e].color === backgroundColors[i]) {
-              arrayByColor.push(this.notes[e]);
+          for (e = 0; e < array.length; e++) {
+            if (array[e].color === backgroundColors[i]) {
+              arrayByColor.push(array[e]);
             }
           }
         }
@@ -162,8 +118,8 @@ const createNote = new Vue({
   methods: {
     createNew(newNote) {
       listNote.notes.push(newNote);
-    }
-  }
+    },
+  },
 });
 const infoAfterSend = new Vue({
   el: '#infoAfterSend',

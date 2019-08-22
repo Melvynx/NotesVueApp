@@ -188,6 +188,8 @@ h1{
   color: #2b2d42;
 }
 .setModeArchiver, .setModeTrier{
+  position: relative;
+  top: 5px;
   border: 1px solid #8d99ae;
   background-color: #69626d;
   color: #edf2f4;

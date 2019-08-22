@@ -4,29 +4,28 @@ Vue.component('note', {
   data() {
     return {
       color: backgroundColors[this.note.color],
+      rowChange: 3,
       showColor: false,
       showDelete: false,
       showEditTitle: false,
       showEditNote: false,
-      rowChange: 3,
+      showListColor: false,
+      showValidationDelete: false,
+      ifArchiver: false,
       infoDeleteTitle: 'Un click pour supprimer une note.',
       infoLabelTitle: 'Un click pour modifier le Label (couleur)',
+      archiverInfo: 'Cliquer une fois pour instantanément archiver votre discution. Elle sera retrouvable en cliquant sur "archiver"',
+      infoArchiverLabel: 'Cette note est archiver. \n Cliquer sur archiver pour la desarchiver.',
+      editNoteInfo: 'Un click permet de modifier la note.',
+      editTitleInfo: 'Un click permet de modifier le titre de la note.',
       infoDateCreateNote: new Date(this.note.date),
       styleButton: {
         background: '#69626d',
         border: '1px solid #d1d1d9',
       },
-      showListColor: false,
-      showValidationDelete: false,
-      editNoteInfo: 'Un click permet de modifier la note.',
-      editTitleInfo: 'Un click permet de modifier le titre de la note.',
       backgroundColors: ['#69626d', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'],
-      archiverInfo: 'Cliquer une fois pour instantanément archiver votre discution. Elle sera retrouvable en cliquant sur "archiver"',
-      infoArchiverLabel: 'Cette note est archiver. \n Cliquer sur archiver pour la desarchiver.',
-      ifArchiver: false,
     };
   },
-
   methods: {
     mouseOver() {
       this.showDelete = true;
@@ -86,7 +85,6 @@ Vue.component('note', {
     },
     countNombreCaractres() {
       titleLenght = this.note.titre.length;
-
       if (titleLenght > 31) {
         this.stopEditTitle();
         infoAfterSend.infoAfterSendMsg = 'Merci de ne pas dépasser 30 caractères pour le titre.';
@@ -104,8 +102,9 @@ Vue.component('note', {
           this.ifArchiver = true;
           return true;
         }
+        this.ifArchiver = false;
         return false;
-      } 
+      }
       if (this.note.archiver === true) {
         return false;
       }
@@ -143,7 +142,6 @@ Vue.component('note', {
       </button>
     </transition>
     <p v-bind:title="infoArchiverLabel" class="ifArchiverLabel" v-show="ifArchiver">Archiver</p>
-    
     <transition name="fade">
       <div class="blockOfValidationDeleteNote" v-show="showValidationDelete">
         <div class="validationOfDelete">
@@ -169,4 +167,3 @@ Vue.component('note', {
   </div>
   `,
 });
-// 2 problèmes, changeColor() comment le changer, et ça ne marche pas

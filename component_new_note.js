@@ -18,7 +18,6 @@ Vue.component('newnoteform', {
         this.rows = messageSplitLength + 1;
       }
     },
-
     listColor() {
       this.showListColor = true;
     },
@@ -42,7 +41,6 @@ Vue.component('newnoteform', {
     },
   },
   template: `
-
       <div id="createNoteComponent" class="createNewNote" v-bind:style="{ backgroundColor: color }">
         <input v-model="titre" type="text" class="titleCreate" id="titleNote" placeholder="Titre..." v-bind:style="{ backgroundColor: color, borderColor: color }">
         <textarea v-bind:style="{ backgroundColor: color }" class="noteCreate createNoteTextArea" v-model="message" v-on:keyup="change" id="containedNote" placeholder="Note..." v-bind:rows="rows"></textarea><br/>
