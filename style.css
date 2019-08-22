@@ -83,7 +83,7 @@ input:placeholder-shown{
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  height: 300px;
+  height: auto;
   flex-wrap: wrap;
   padding-left: 40px;
   padding-right: 30px;
@@ -159,18 +159,49 @@ h1{
   transition-property: background-color, border;
   transition-duration: 2s;
 }
-.buttonDelete:hover{
+.buttonDelete:hover, .buttonArchiver:hover{
   background-color: #93969c;
-  border: 1px solid #93969c;
+  border: 1px solid #161616;
 }
 .buttonArchiver{
   position: absolute;
   background-color: #edf2f4;
   border-radius: 10px;
   transition-property: background-color, border;
+  transition-duration: 2s;
   border: 1px solid #edf2f4;
   left: 60px;
   bottom: 6px;
+}
+.ifArchiverLabel{
+  position: absolute;
+  right: 0px;
+  border-radius: 2px;
+  padding: 5px;
+  top: -16px;
+  background-color: #8d8d8d77;
+  transition-property: background-color, color;
+  transition-duration: 1s;
+}
+.ifArchiverLabel:hover{
+  background-color: #ffffff8e;
+  color: #2b2d42;
+}
+.setModeArchiver, .setModeTrier{
+  border: 1px solid #8d99ae;
+  background-color: #69626d;
+  color: #edf2f4;
+  border-radius: 3px;
+  font-size: 14px;
+  margin: 2px;
+  padding: 5px;
+  transition-property: background-color, color, border;
+  transition-duration: 1s;
+}
+.setModeArchiver:hover, .setModeTrier:hover{
+  background-color: #afadb1;
+  border: 1px solid #6e737a;
+  color: #2b2d42
 }
 .svgTrash {
   width: 20px;

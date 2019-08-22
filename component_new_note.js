@@ -31,7 +31,7 @@ Vue.component('newnoteform', {
     },
     clickSendNote() {
       if (checkedTitle(this.titre) && checkedNote(this.message)) {
-        const newNote = {id: String(findTheBiggestID()), titre: this.titre, note: this.message, color: this.color, date: Date.now() };
+        const newNote = {id: String(findTheBiggestID()), titre: this.titre, note: this.message, color: this.color, date: Date.now(), archiver: false };
         this.$emit('create-new', newNote);
         this.message = '';
         this.titre = '';

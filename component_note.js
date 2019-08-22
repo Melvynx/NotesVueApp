@@ -3,7 +3,7 @@ Vue.component('note', {
   props: ['note'],
   data() {
     return {
-      color: backgroundColors[this.note.color], 
+      color: backgroundColors[this.note.color],
       showColor: false,
       showDelete: false,
       showEditTitle: false,
@@ -21,6 +21,9 @@ Vue.component('note', {
       editNoteInfo: 'Un click permet de modifier la note.',
       editTitleInfo: 'Un click permet de modifier le titre de la note.',
       backgroundColors: ['#69626d', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'],
+      archiverInfo: 'Cliquer une fois pour instantanément archiver votre discution. Elle sera retrouvable en cliquant sur "archiver"',
+      infoArchiverLabel: 'Cette note est archiver. \n Cliquer sur archiver pour la desarchiver.',
+      ifArchiver: false,
     };
   },
 
@@ -91,11 +94,26 @@ Vue.component('note', {
       }
     },
     archiver() {
-      console.log("yo");
-    }
+      this.note.archiver = !this.note.archiver;
+      listNote.persist();
+      this.ifArchiverOn();
+    },
+    ifArchiverOn() {
+      if (findColor.modeArchiver) {
+        if (this.note.archiver === true) {
+          this.ifArchiver = true;
+          return true;
+        }
+        return false;
+      } 
+      if (this.note.archiver === true) {
+        return false;
+      }
+      return true;
+    },
   },
   template: `
-  <div v-bind:style="{ backgroundColor: color || this.note.color }" class="note" @mouseover="mouseOver" @mouseleave="mouseLeave" v-bind:title="infoDateCreateNote">
+  <div v-bind:style="{ backgroundColor: color || this.note.color }" class="note" @mouseover="mouseOver" @mouseleave="mouseLeave" v-bind:title="infoDateCreateNote" v-show="ifArchiverOn()">
     <h1 
       v-bind:title="editTitleInfo"
       v-show="!showEditTitle"
@@ -119,10 +137,12 @@ Vue.component('note', {
       <button v-bind:title="infoDeleteTitle" class="buttonDelete" v-show="showDelete" v-on:click="deleteNote">
         <img src="trash.svg" class="svgTrash" />
       </button>
+    </transition><transition name="deleteButtonTransition">
+      <button v-on:click="archiver" class="buttonArchiver" v-show="showDelete" v-bind:title="archiverInfo">
+          <img src="archiver.svg" class="svgArchiver">
+      </button>
     </transition>
-    <button v-on:click="archiver" class="buttonArchiver" v-show="showDelete">
-        <img src="archiver.svg" class="svgArchiver">
-    </button>
+    <p v-bind:title="infoArchiverLabel" class="ifArchiverLabel" v-show="ifArchiver">Archiver</p>
     
     <transition name="fade">
       <div class="blockOfValidationDeleteNote" v-show="showValidationDelete">

@@ -13,8 +13,8 @@ const checkedTitle = function (title) {
   msgSendNote();
   return false;
 };
-const filtreTabTitle = function (array, string) {
-  return array.filter((el) => el.titre.toLowerCase().indexOf(string.toLowerCase()) !== -1);
+const filtreTabTitle = function (array, text) {
+  return array.filter((el) => el.titre.toLowerCase().indexOf(text.toLowerCase()) !== -1);
 };
 const checkedNote = function (note) {
   if (note.length > 3 && note.length < 2000) {
@@ -38,6 +38,10 @@ const findColor = new Vue({
     options: [{ text: 'All', value: 'all' }, { text: 'Gris', value: '#69626d' }, { text: 'Cyan', value: '#177e89' }, { text: 'Sang', value: '#32021f' }, { text: 'Pastèle', value: '#8b635c' }, { text: 'Violet', value: '#49306b' }, { text: 'Orange', value: '#6b2000' }, { text: 'Bleu', value: '#15075f' }, { text: 'Rouge', value: '#5c0029' }],
     rightChange: '200px',
     textToFind: '',
+    shouldSortByColor: true,
+    modeArchiver: false,
+    archiverModeInfo: 'Mode archiver',
+    shouldByColorInfo: 'Trier date',
   },
   mounted() {
     if (localStorage.colorToFind) {
@@ -62,10 +66,28 @@ const findColor = new Vue({
       const findResult = filtreTabTitle(listNote.notes, this.textToFind);
       return findResult;
     },
-    stopFind() {
+    shouldSortByColorFind() {
+      this.shouldSortByColor = !this.shouldSortByColor;
+      listNote.persist();
+      if (this.shouldSortByColor) {
+        this.shouldByColorInfo = 'Trier Date';
+      // eslint-disable-next-line no-empty
+      } else {
+        this.shouldByColorInfo = 'Trier Couleur';
+      }
     },
     filterByDate(array) {
-      return array.sort((a, b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
+      // eslint-disable-next-line no-nested-ternary
+      return array.sort((a, b) => ((a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0)));
+    },
+    IfmodeArchiver() {
+      this.modeArchiver = !this.modeArchiver;
+      if (this.modeArchiver) {
+        this.archiverModeInfo = 'Note';
+      // eslint-disable-next-line no-empty
+      } else {
+        this.archiverModeInfo = 'Note Archiver';
+      }
     },
   },
 });
@@ -92,21 +114,41 @@ const listNote = new Vue({
     },
     notesFiltered() {
       const findResult = filtreTabTitle(this.notes, findColor.textToFind);
-      const filterdArray = this.notes.filter((x) => x.color === findColor.colorToFind);
+      const filterdArray = this.notes.filter((note) => note.color === findColor.colorToFind);
       if (findColor.textToFind.length > 0) {
         findColor.colorToFind = 'all';
         return findResult;
+      }
+      if (findColor.shouldSortByColor) {
+        if (findColor.colorToFind === 'all') {
+          return this.sortNoteByColor();
+        // eslint-disable-next-line no-else-return
+        } else {
+          this.nothingNoteFind = false;
+          return filterdArray;
+        }
       }
       if (findColor.colorToFind === 'all') {
         this.nothingNoteFind = false;
         return this.notes;
       }
-      if (filterdArray.length === 0) {
+      if (filterdArray.length === 0 || findResult.length === 0) {
         this.nothingNoteFind = true;
         return filterdArray;
-      };
-      this.nothingNoteFind = false;
-      return filterdArray;
+      }
+    },
+    sortNoteByColor() {
+      arrayByColor = [];
+      if (this.notes) {
+        for (i = 0; i < backgroundColors.length; i++) {
+          for (e = 0; e < this.notes.length; e++) {
+            if (this.notes[e].color === backgroundColors[i]) {
+              arrayByColor.push(this.notes[e]);
+            }
+          }
+        }
+      }
+      return arrayByColor;
     },
   },
 });
@@ -118,7 +160,7 @@ const createNote = new Vue({
     titre: '',
   },
   methods: {
-    createNew: function(newNote) {
+    createNew(newNote) {
       listNote.notes.push(newNote);
     }
   }
