@@ -12,9 +12,12 @@
           {{ option.text }}
         </option>
       </select>
-        <div class="findInANote" v-bind:style="{ right: rightChange }" @focusout="hideFindAText">
-          <input ref="refFindText" type="text" class="findAText" v-on:keyup.enter="sendFindInNote" v-model="textToFind" ><img class="svgLoupe" src="loupe.svg" v-on:click="sendFindInNote" @mouseover="displayFindAText"/>
-        </div>
+      <div class="findInANote" v-bind:style="{ right: rightChange }" @focusout="hideFindAText">
+        <input ref="refFindText" type="text" class="findAText" v-on:keyup.enter="sendFindInNote" v-model="textToFind" ><img class="svgLoupe" src="loupe.svg" v-on:click="sendFindInNote" @mouseover="displayFindAText"/>
+      </div>
+      <div>
+        <button v-on:click="filterByDate(listNote.notes)">Inverser</button>
+      </div>  
     </div>
     <div id="createNote">
       <newnoteform v-on:create-new="createNew" />
@@ -34,6 +37,7 @@
         <note v-for="note in notesFiltered()" v-bind:note="note" v-bind:key="note.id" class="notes-note" v-on:edit-note-storage="persist"/>
       </transition-group>
     </div>
+    <img src="archiver.svg" class="svgArchiver">
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="component_note.js"></script>
     <script src="component_new_note.js"></script>

@@ -28,3 +28,5 @@ module.exports = {
     'object-curly-newline': 0,
   },
 };
+1566399595910
+1566397677582

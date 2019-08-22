@@ -64,6 +64,9 @@ const findColor = new Vue({
     },
     stopFind() {
     },
+    filterByDate(array) {
+      return array.sort((a, b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
+    },
   },
 });
 

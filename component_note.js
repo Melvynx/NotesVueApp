@@ -11,7 +11,7 @@ Vue.component('note', {
       rowChange: 3,
       infoDeleteTitle: 'Un click pour supprimer une note.',
       infoLabelTitle: 'Un click pour modifier le Label (couleur)',
-      infoDateCreateNote: this.note.date,
+      infoDateCreateNote: new Date(this.note.date),
       styleButton: {
         background: '#69626d',
         border: '1px solid #d1d1d9',
@@ -90,6 +90,9 @@ Vue.component('note', {
         msgSendNote();
       }
     },
+    archiver() {
+      console.log("yo");
+    }
   },
   template: `
   <div v-bind:style="{ backgroundColor: color || this.note.color }" class="note" @mouseover="mouseOver" @mouseleave="mouseLeave" v-bind:title="infoDateCreateNote">
@@ -117,6 +120,9 @@ Vue.component('note', {
         <img src="trash.svg" class="svgTrash" />
       </button>
     </transition>
+    <button v-on:click="archiver" class="buttonArchiver" v-show="showDelete">
+        <img src="archiver.svg" class="svgArchiver">
+    </button>
     
     <transition name="fade">
       <div class="blockOfValidationDeleteNote" v-show="showValidationDelete">
