@@ -6,8 +6,8 @@ const findColor = new Vue({
     rightChange: '200px',
     textToFind: '',
     shouldSortByColor: true,
-    modeArchiver: false,
-    archiverModeInfo: 'Mode archiver',
+    modeArchived: false,
+    archivedModeInfo: 'Mode archiver',
     shouldByColorInfo: 'Trier date',
   },
   mounted() {
@@ -46,12 +46,12 @@ const findColor = new Vue({
       // eslint-disable-next-line no-nested-ternary
       return array.sort((a, b) => ((a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0)));
     },
-    IfmodeArchiver() {
-      this.modeArchiver = !this.modeArchiver;
-      if (this.modeArchiver) {
-        this.archiverModeInfo = 'Note';
+    IfmodeArchived() {
+      this.modeArchived = !this.modeArchived;
+      if (this.modeArchived) {
+        this.archivedModeInfo = 'Note';
       } else {
-        this.archiverModeInfo = 'Note Archiver';
+        this.archivedModeInfo = 'Note Archived';
       }
     },
   },
@@ -86,11 +86,12 @@ const listNote = new Vue({
       }
       const filterdArrayText = filtreTabTitle(arrayToFiltre, findColor.textToFind);
       const filterdArrayColor = filtreColor(filterdArrayText, findColor.colorToFind);
-      if (filterdArrayColor.length === 0) {
+      const filteredArrayArchived = filtreArchived(filterdArrayColor, findColor.modeArchived);
+      if (filteredArrayArchived.length === 0) {
         this.nothingNoteFind = true;
       } else {
         this.nothingNoteFind = false;
-        return filterdArrayColor;
+        return filteredArrayArchived;
       }
     },
     sortNoteByColor(array) {

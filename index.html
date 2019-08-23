@@ -19,7 +19,7 @@
         <button v-on:click="shouldSortByColorFind" class="setModeTrier"> {{ shouldByColorInfo }} </button>
       </div> 
       <div>
-        <button v-on:click="IfmodeArchiver" class="setModeArchiver"> {{ archiverModeInfo }}</button>
+        <button v-on:click="IfmodeArchived" class="setModeArchived"> {{ archivedModeInfo }}</button>
       </div> 
     </div>
     <div id="createNote">
@@ -33,14 +33,14 @@
     <div id="listNote" >
       <div class="nothingNoteFind" v-show="nothingNoteFind">
           <img class="svgNothing" src="nothing.svg"/>
-          <p>Vous n'avez pas encore effectuer de note avec cette couleur...</p>
+          <p>Aucune note n'a été crée avec les actuels paramètres.</p>
           <p>Crée en une !</p>
       </div>
       <transition-group mode="out-in" name="notes" tag="div" class="listOfNote">
         <note v-for="note in notesFiltered()" v-bind:note="note" v-bind:key="note.id" class="notes-note" v-on:edit-note-storage="persist"/>
       </transition-group>
     </div>
-    <script src="utile.js"></script>
+    <script src="utils.js"></script>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="component_note.js"></script>
     <script src="component_new_note.js"></script>

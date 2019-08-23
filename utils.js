@@ -24,6 +24,12 @@ const filtreColor = function (array, colorToFind) {
   }
   return array.filter((ar) => ar.color === colorToFind);
 };
+const filtreArchived = function (array, modeArchived) {
+  if (modeArchived === true) {
+    return array.filter((ar) => ar.archived === true);
+  }
+  return array.filter((ar) => ar.archived === false);
+}
 const checkedNote = function (note) {
   if (note.length > 3 && note.length < 2000) {
     return true;

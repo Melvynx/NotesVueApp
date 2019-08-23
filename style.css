@@ -159,11 +159,11 @@ h1{
   transition-property: background-color, border;
   transition-duration: 2s;
 }
-.buttonDelete:hover, .buttonArchiver:hover{
+.buttonDelete:hover, .buttonArchived:hover{
   background-color: #93969c;
   border: 1px solid #161616;
 }
-.buttonArchiver{
+.buttonArchived{
   position: absolute;
   background-color: #edf2f4;
   border-radius: 10px;
@@ -173,7 +173,7 @@ h1{
   left: 60px;
   bottom: 6px;
 }
-.ifArchiverLabel{
+.ifArchivedLabel{
   position: absolute;
   right: 0px;
   border-radius: 2px;
@@ -183,11 +183,11 @@ h1{
   transition-property: background-color, color;
   transition-duration: 1s;
 }
-.ifArchiverLabel:hover{
+.ifArchivedLabel:hover{
   background-color: #ffffff8e;
   color: #2b2d42;
 }
-.setModeArchiver, .setModeTrier{
+.setModeArchived, .setModeTrier{
   position: relative;
   top: 5px;
   border: 1px solid #8d99ae;
@@ -200,7 +200,7 @@ h1{
   transition-property: background-color, color, border;
   transition-duration: 1s;
 }
-.setModeArchiver:hover, .setModeTrier:hover{
+.setModeArchived:hover, .setModeTrier:hover{
   background-color: #afadb1;
   border: 1px solid #6e737a;
   color: #2b2d42
@@ -216,7 +216,7 @@ h1{
 .svgNothing{
   width: 150px;
 }
-.svgArchiver{
+.svgArchived{
   width: 20px;
   margin-bottom: -7px;
 }
@@ -236,7 +236,7 @@ h1{
   margin-top: -20px;
   position: relative;
   top: -15px; 
-  border: 1px solid #8d99ae;
+  border: none;
   background-color: #69626d;
   border-right: none;
   color: #edf2f4;
