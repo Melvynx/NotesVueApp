@@ -18,7 +18,6 @@ Vue.component('newnoteform', {
         this.rows = messageSplitLength + 1;
       }
     },
-
     listColor() {
       this.showListColor = true;
     },
@@ -31,7 +30,7 @@ Vue.component('newnoteform', {
     },
     clickSendNote() {
       if (checkedTitle(this.titre) && checkedNote(this.message)) {
-        const newNote = {id: String(findTheBiggestID()), titre: this.titre, note: this.message, color: this.color, date: Date() };
+        const newNote = {id: String(findTheBiggestID()), titre: this.titre, note: this.message, color: this.color, date: Date.now(), archived: false };
         this.$emit('create-new', newNote);
         this.message = '';
         this.titre = '';
@@ -42,11 +41,10 @@ Vue.component('newnoteform', {
     },
   },
   template: `
-
       <div id="createNoteComponent" class="createNewNote" v-bind:style="{ backgroundColor: color }">
         <input v-model="titre" type="text" class="titleCreate" id="titleNote" placeholder="Titre..." v-bind:style="{ backgroundColor: color, borderColor: color }">
         <textarea v-bind:style="{ backgroundColor: color }" class="noteCreate createNoteTextArea" v-model="message" v-on:keyup="change" id="containedNote" placeholder="Note..." v-bind:rows="rows"></textarea><br/>
-        <input class="createNoteButton" type="button" v-on:click="clickSendNote" id="sendNote" value="Noter" v-bind:style="{ backgroundColor: color }">
+        <input class="createNoteButton" type="submit" v-on:click="clickSendNote" id="sendNote" value="Noter" >
         <input v-bind:style="{ backgroundColor: color }" class="colorForNewNote" type="button" v-on:click="listColor" @mouseover="listColor">
         <transition name="fade">
           <div class="listNewColor" v-show="showListColor" id="listColor" @mouseleave="mouseLeaveColor">
