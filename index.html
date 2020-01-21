@@ -40,6 +40,7 @@
         <note v-for="note in notesFiltered()" v-bind:note="note" v-bind:key="note.id" class="notes-note" v-on:edit-note-storage="persist"/>
       </transition-group>
     </div>
+    <script src="vue.js"></script>                    
     <script src="utils.js"></script>
     <script src="node_modules/vue/dist/vue.js"></script>
     <script src="component_note.js"></script>
