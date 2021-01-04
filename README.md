@@ -1,5 +1,7 @@
-# noteX
+# NotesApp in VueJS
 
-application for manage notes
+application to manage notes
 
-my first Vue.js project 
+My first Vue.js project.
+
+I'm not a fan of VueJS but I like this project.
