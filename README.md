@@ -1,7 +1,14 @@
 # NotesApp in VueJS
 
-application to manage notes
+## Motivation
 
-My first Vue.js project.
+I was inspired from [Google Keep](https://keep.google.com) 📝.
 
-I'm not a fan of VueJS but I like this project.
+It was my first time using a Framework, I select `VueJs` 👁 because it's look like simple to learn.
+
+## Installation
+
+Clone the repository and add `vuejs`.
+Open `index.html`.
+
+Made with ❤️ by me.
