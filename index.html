@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>Note</title>
-    <meta charset="utf-8">
-    <link href="style.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <link href="style.css" rel="stylesheet" />
   </head>
   <body>
     <div id="find" class="findAColor">
@@ -12,15 +12,34 @@
           {{ option.text }}
         </option>
       </select>
-      <div class="findInANote" v-bind:style="{ right: rightChange }" @focusout="hideFindAText">
-        <input ref="refFindText" type="text" class="findAText" v-on:keyup.enter="sendFindInNote" v-model="textToFind" ><img class="svgLoupe" src="loupe.svg" v-on:click="sendFindInNote" @mouseover="displayFindAText"/>
+      <div
+        class="findInANote"
+        v-bind:style="{ right: rightChange }"
+        @focusout="hideFindAText"
+      >
+        <input
+          ref="refFindText"
+          type="text"
+          class="findAText"
+          v-on:keyup.enter="sendFindInNote"
+          v-model="textToFind"
+        /><img
+          class="svgLoupe"
+          src="./images/loupe.svg"
+          v-on:click="sendFindInNote"
+          @mouseover="displayFindAText"
+        />
       </div>
       <div>
-        <button v-on:click="shouldSortByColorFind" class="setModeTrier"> {{ shouldByColorInfo }} </button>
-      </div> 
+        <button v-on:click="shouldSortByColorFind" class="setModeTrier">
+          {{ shouldByColorInfo }}
+        </button>
+      </div>
       <div>
-        <button v-on:click="IfmodeArchived" class="setModeArchived"> {{ archivedModeInfo }}</button>
-      </div> 
+        <button v-on:click="IfmodeArchived" class="setModeArchived">
+          {{ archivedModeInfo }}
+        </button>
+      </div>
     </div>
     <div id="createNote">
       <newnoteform v-on:create-new="createNew" />
@@ -30,21 +49,26 @@
         <h2 v-if="seen">{{ infoAfterSendMsg }}</h2>
       </transition>
     </div>
-    <div id="listNote" >
+    <div id="listNote">
       <div class="nothingNoteFind" v-show="nothingNoteFind">
-          <img class="svgNothing" src="nothing.svg"/>
-          <p>Aucune note n'a été crée avec les actuels paramètres.</p>
-          <p>Crée en une !</p>
+        <img class="svgNothing" src="./images/nothing.svg" />
+        <p>Aucune note n'a été crée avec les actuels paramètres.</p>
+        <p>Crée en une !</p>
       </div>
       <transition-group mode="out-in" name="notes" tag="div" class="listOfNote">
-        <note v-for="note in notesFiltered()" v-bind:note="note" v-bind:key="note.id" class="notes-note" v-on:edit-note-storage="persist"/>
+        <note
+          v-for="note in notesFiltered()"
+          v-bind:note="note"
+          v-bind:key="note.id"
+          class="notes-note"
+          v-on:edit-note-storage="persist"
+        />
       </transition-group>
     </div>
-    <script src="vue.js"></script>                    
-    <script src="utils.js"></script>
-    <script src="node_modules/vue/dist/vue.js"></script>
-    <script src="component_note.js"></script>
-    <script src="component_new_note.js"></script>
-    <script src="script.js"></script>
+    <script src="./lib/vue.js"></script>
+    <script src="./utils.js"></script>
+    <script src="./component/component_new_note.js"></script>
+    <script src="./component/component_note.js"></script>
+    <script src="./script.js"></script>
   </body>
-</html> 
+</html>

@@ -1,14 +1,24 @@
 const findColor = new Vue({
-  el: '#find',
+  el: "#find",
   data: {
-    colorToFind: 'all',
-    options: [{ text: 'All', value: 'all' }, { text: 'Gris', value: '#69626d' }, { text: 'Cyan', value: '#177e89' }, { text: 'Sang', value: '#32021f' }, { text: 'Pastèle', value: '#8b635c' }, { text: 'Violet', value: '#49306b' }, { text: 'Orange', value: '#6b2000' }, { text: 'Bleu', value: '#15075f' }, { text: 'Rouge', value: '#5c0029' }],
-    rightChange: '200px',
-    textToFind: '',
+    colorToFind: "all",
+    options: [
+      { text: "All", value: "all" },
+      { text: "Gris", value: "#69626d" },
+      { text: "Cyan", value: "#177e89" },
+      { text: "Sang", value: "#32021f" },
+      { text: "Pastèle", value: "#8b635c" },
+      { text: "Violet", value: "#49306b" },
+      { text: "Orange", value: "#6b2000" },
+      { text: "Bleu", value: "#15075f" },
+      { text: "Rouge", value: "#5c0029" },
+    ],
+    rightChange: "200px",
+    textToFind: "",
     shouldSortByColor: true,
     modeArchived: false,
-    archivedModeInfo: 'Mode archiver',
-    shouldByColorInfo: 'Trier date',
+    archivedModeInfo: "Mode archiver",
+    shouldByColorInfo: "Trier date",
   },
   mounted() {
     if (localStorage.colorToFind) {
@@ -18,16 +28,16 @@ const findColor = new Vue({
   watch: {
     colorToFind(colorToFind) {
       localStorage.colorToFind = colorToFind;
-      this.textToFind = '';
+      this.textToFind = "";
     },
   },
   methods: {
     displayFindAText() {
-      this.rightChange = '0px';
+      this.rightChange = "0px";
       this.$nextTick(() => this.$refs.refFindText.focus());
     },
     hideFindAText() {
-      this.rightChange = '200px';
+      this.rightChange = "200px";
     },
     sendFindInNote() {
       const findResult = filtreTabTitle(listNote.notes, this.textToFind);
@@ -37,27 +47,29 @@ const findColor = new Vue({
       this.shouldSortByColor = !this.shouldSortByColor;
       listNote.persist();
       if (this.shouldSortByColor) {
-        this.shouldByColorInfo = 'Trier Date';
+        this.shouldByColorInfo = "Trier Date";
       } else {
-        this.shouldByColorInfo = 'Trier Couleur';
+        this.shouldByColorInfo = "Trier Couleur";
       }
     },
     filterByDate(array) {
       // eslint-disable-next-line no-nested-ternary
-      return array.sort((a, b) => ((a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0)));
+      return array.sort((a, b) =>
+        a.date > b.date ? 1 : b.date > a.date ? -1 : 0
+      );
     },
     IfmodeArchived() {
       this.modeArchived = !this.modeArchived;
       if (this.modeArchived) {
-        this.archivedModeInfo = 'Note';
+        this.archivedModeInfo = "Note";
       } else {
-        this.archivedModeInfo = 'Note Archived';
+        this.archivedModeInfo = "Note Archived";
       }
     },
   },
 });
 const listNote = new Vue({
-  el: '#listNote',
+  el: "#listNote",
   data: {
     notes: [],
     nothingNoteFind: false,
@@ -84,9 +96,18 @@ const listNote = new Vue({
       } else {
         arrayToFiltre = this.notes;
       }
-      const filterdArrayText = filtreTabTitle(arrayToFiltre, findColor.textToFind);
-      const filterdArrayColor = filtreColor(filterdArrayText, findColor.colorToFind);
-      const filteredArrayArchived = filtreArchived(filterdArrayColor, findColor.modeArchived);
+      const filterdArrayText = filtreTabTitle(
+        arrayToFiltre,
+        findColor.textToFind
+      );
+      const filterdArrayColor = filtreColor(
+        filterdArrayText,
+        findColor.colorToFind
+      );
+      const filteredArrayArchived = filtreArchived(
+        filterdArrayColor,
+        findColor.modeArchived
+      );
       if (filteredArrayArchived.length === 0) {
         this.nothingNoteFind = true;
       } else {
@@ -110,11 +131,11 @@ const listNote = new Vue({
   },
 });
 const createNote = new Vue({
-  el: '#createNote',
+  el: "#createNote",
   data: {
     rows: 3,
-    message: '',
-    titre: '',
+    message: "",
+    titre: "",
   },
   methods: {
     createNew(newNote) {
@@ -123,12 +144,12 @@ const createNote = new Vue({
   },
 });
 const infoAfterSend = new Vue({
-  el: '#infoAfterSend',
+  el: "#infoAfterSend",
   data: {
     seen: false,
-    infoAfterSendMsg: 'La note à été sauvegarder.',
+    infoAfterSendMsg: "La note à été sauvegarder.",
     styleObject: {
-      top: '-600px',
+      top: "-600px",
     },
   },
 });

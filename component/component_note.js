@@ -1,10 +1,22 @@
-const backgroundColors = ['#69626d', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'];
+const backgroundColors = [
+  '#69626d',
+  '#177e89',
+  '#32021f',
+  '#8b635c',
+  '#49306b',
+  '#6b2000',
+  '#15075f',
+  '#5c0029',
+];
 const infoDeleteTitle = 'Un click pour supprimer une note.';
 const infoLabelTitle = 'Un click pour modifier le Label (couleur)';
-const archivedInfo = 'Cliquer une fois pour instantanément archiver votre discution. Elle sera retrouvable en cliquant sur archived';
-const infoArchivedLabel = 'Cette note est archiver. \n Cliquer sur archiver pour la desarchiver.';
+const archivedInfo =
+  'Cliquer une fois pour instantanément archiver votre discution. Elle sera retrouvable en cliquant sur archived';
+const infoArchivedLabel =
+  'Cette note est archiver. \n Cliquer sur archiver pour la desarchiver.';
 const editNoteInfo = 'Un click permet de modifier la note.';
 const editTitleInfo = 'Un click permet de modifier le titre de la note.';
+
 Vue.component('note', {
   props: ['note'],
   data() {
@@ -22,7 +34,7 @@ Vue.component('note', {
         background: '#69626d',
         border: '1px solid #d1d1d9',
       },
-      backgroundColors: ['#69626d', '#177e89', '#32021f', '#8b635c', '#49306b', '#6b2000', '#15075f', '#5c0029'],
+      backgroundColors,
     };
   },
   computed: {
@@ -91,7 +103,8 @@ Vue.component('note', {
       titleLenght = this.note.titre.length;
       if (titleLenght > 31) {
         this.stopEditTitle();
-        infoAfterSend.infoAfterSendMsg = 'Merci de ne pas dépasser 30 caractères pour le titre.';
+        infoAfterSend.infoAfterSendMsg =
+          'Merci de ne pas dépasser 30 caractères pour le titre.';
         msgSendNote();
       }
     },
@@ -127,7 +140,7 @@ Vue.component('note', {
       </button>
     </transition><transition name="deleteButtonTransition">
       <button v-on:click="archived" class="buttonArchived" v-show="showDelete" title="${archivedInfo}">
-          <img src="archived.svg" class="svgArchived">
+          <img src="./images/archived.svg" class="svgArchived">
       </button>
     </transition>
     <p title="${infoArchivedLabel}" class="ifArchivedLabel" v-show="ifArchived">Archived</p>
